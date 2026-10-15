@@ -211,11 +211,12 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.9;
 }
 
-/* Demo badge on product cards */
+/* Demo badge on product cards.
+   Top-LEFT so it never collides with .product-actions (top-right). */
 .demo-product-badge {
   position: absolute;
   top: var(--space-3);
-  right: var(--space-3);
+  left: var(--space-3);
   padding: 0.25rem 0.6rem;
   background: rgba(11, 18, 32, 0.82);
   color: var(--white);
@@ -2537,12 +2538,14 @@ body {
   color: var(--navy);
 }
 
-/* Consistent section rhythm */
+/* Consistent section rhythm.
+   Backgrounds are set per-section, NOT via nth-of-type, because the
+   design system brands certain sections (.benefits-section = navy
+   gradient with white headings, .newsletter-section = gradient card).
+   A blanket nth-of-type rule would override those and leave white
+   text on a light background. */
 .section { padding: var(--section-rhythm) 0; }
-.section:nth-of-type(even) { background: var(--gray-50); }
-.products-section,
-.testimonials-section { background: var(--gray-50); }
-.categories-section,
+.products-section { background: var(--gray-50); }
 .testimonials-section { background: var(--white); }
 
 .section-header { margin-bottom: var(--space-12); }
@@ -2795,8 +2798,10 @@ textarea:focus-visible,
   border-color: var(--blue);
 }
 
+/* Product images are authored natively at 800x600 (4:3).
+   Match that ratio so object-fit: cover never crops the artwork. */
 .product-image {
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 4 / 3;
   background: linear-gradient(135deg, var(--gray-50), var(--gray-100));
   border-bottom: 1px solid var(--gray-100);
 }
@@ -2805,10 +2810,10 @@ textarea:focus-visible,
 }
 .product-card:hover .product-image img { transform: scale(1.05); }
 
-/* Demo badge refinement */
+/* Demo badge refinement — top-left (matches base rule; actions stay top-right) */
 .demo-product-badge {
   top: var(--space-3);
-  right: var(--space-3);
+  left: var(--space-3);
   padding: 0.3rem 0.65rem;
   background: rgba(11, 18, 32, 0.86);
   font-size: 0.6rem;
