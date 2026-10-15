@@ -122,6 +122,15 @@ const CartSidebar = {
     this.sidebar.querySelector('.cart-close').addEventListener('click', () => this.close());
     this.sidebar.querySelector('#checkout-btn').addEventListener('click', () => this.handleCheckout());
 
+    // Bind the header cart button so every page that loads app.js gets a
+    // working cart. Previously only index.html bound it (via page-inline JS),
+    // which left the button dead on product.html.
+    var cartBtn = document.getElementById('cartBtn');
+    if (cartBtn && !cartBtn.dataset.cartBound) {
+      cartBtn.dataset.cartBound = '1';
+      cartBtn.addEventListener('click', () => this.open());
+    }
+
     // Subscribe to cart changes
     Cart.subscribe(() => this.render());
 

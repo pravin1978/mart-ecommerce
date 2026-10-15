@@ -482,11 +482,8 @@
       }).join('');
     }
 
-    // Cart button opens sidebar
-    document.getElementById('cartBtn').addEventListener('click', () => {
-      document.querySelector('.cart-sidebar')?.classList.add('open');
-      document.querySelector('.cart-overlay')?.classList.add('open');
-    });
+    // Cart button is bound centrally in js/app.js (CartSidebar.init),
+    // which also locks background scrolling while the drawer is open.
 
     // Newsletter form
     document.getElementById('newsletterForm')?.addEventListener('submit', (e) => {
