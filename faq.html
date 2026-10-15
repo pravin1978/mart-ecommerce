@@ -9,13 +9,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=5">
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body>
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo" aria-label="Digimart home">
-        <img src="assets/logo-compact.svg?v=5" alt="Digimart" height="36" width="auto">
+        <img src="assets/logo-compact.svg?v=5" alt="Digimart" height="36">
       </a>
       <div class="header-search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
@@ -37,6 +37,7 @@
 
   <main style="flex: 1; padding: var(--space-12) 0;">
     <div class="section-inner" style="max-width: 800px;">
+      <h2 style="font-size: var(--font-size-2xl); font-weight: 700; margin-bottom: var(--space-6);">Common questions</h2>
       <div class="faq-grid">
         <div class="faq-item">
           <button class="faq-question">How do I receive my digital products after purchase?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
@@ -76,16 +77,31 @@
 
   <script>
     document.querySelectorAll('.faq-question').forEach(q => {
+      const item = q.parentElement;
+      const answer = q.nextElementSibling;
+      if (!answer || !answer.classList.contains('faq-answer')) return;
+
+      // Disclosure ARIA: make the accordion legible to assistive tech.
+      if (!answer.id) answer.id = 'faq-answer-' + Math.random().toString(36).slice(2, 9);
+      q.setAttribute('aria-expanded', 'false');
+      q.setAttribute('aria-controls', answer.id);
+
       q.addEventListener('click', () => {
-        const item = q.parentElement;
         const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          const btn = i.querySelector('.faq-question');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          q.setAttribute('aria-expanded', 'true');
+        }
       });
     });
   </script>
 
   <script src="js/config.js?v=1"></script>
-  <script src="js/contact.js?v=1"></script>
+  <script src="js/contact.js?v=2"></script>
 </body>
 </html>

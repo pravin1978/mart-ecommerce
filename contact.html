@@ -9,14 +9,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=5">
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body>
   <!-- Header -->
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo" aria-label="Digimart home">
-        <img src="assets/logo-compact.svg?v=5" alt="Digimart" height="36" width="auto">
+        <img src="assets/logo-compact.svg?v=5" alt="Digimart" height="36">
       </a>
       <div class="header-search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
@@ -43,7 +43,7 @@
   <!-- Contact Content -->
   <main style="flex: 1; padding: var(--space-16) 0;">
     <div class="section-inner">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); max-width: 1000px; margin: 0 auto;">
+      <div class="contact-layout">
         <!-- Contact Methods (rendered from js/config.js via js/contact.js) -->
         <div id="contactMethods"></div>
 
@@ -88,7 +88,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="logo" aria-label="Digimart home">
-            <img src="assets/logo-white.svg?v=5" alt="Digimart" height="36" width="auto">
+            <img src="assets/logo-white.svg?v=5" alt="Digimart" height="36">
           </a>
           <p>India's premium marketplace for digital products.</p>
         </div>
@@ -150,6 +150,6 @@
   </script>
 
   <script src="js/config.js?v=1"></script>
-  <script src="js/contact.js?v=1"></script>
+  <script src="js/contact.js?v=2"></script>
 </body>
 </html>

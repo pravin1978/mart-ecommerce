@@ -430,16 +430,29 @@ const ProductRenderer = {
 const FAQ = {
   init() {
     document.querySelectorAll('.faq-question').forEach(question => {
+      const item = question.parentElement;
+      const answer = question.nextElementSibling;
+      if (!answer || !answer.classList.contains('faq-answer')) return;
+
+      // Wire up disclosure ARIA so assistive tech can follow the accordion.
+      if (!answer.id) answer.id = 'faq-answer-' + Math.random().toString(36).slice(2, 9);
+      question.setAttribute('aria-expanded', 'false');
+      question.setAttribute('aria-controls', answer.id);
+
       question.addEventListener('click', () => {
-        const item = question.parentElement;
         const isOpen = item.classList.contains('open');
 
         // Close all items
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          const q = i.querySelector('.faq-question');
+          if (q) q.setAttribute('aria-expanded', 'false');
+        });
 
         // Open clicked item if it was closed
         if (!isOpen) {
           item.classList.add('open');
+          question.setAttribute('aria-expanded', 'true');
         }
       });
     });

@@ -323,13 +323,13 @@
         card.rel = 'noopener noreferrer';
       }
       var icon = el('div', 'contact-card__icon', a.icon);
-      var h3 = el('h3', null, a.label);
+      var h2 = el('h2', null, a.label);
       var p = el('p', null, a.hint);
       var value = el('div', 'contact-card__value', a.key === 'whatsapp' ? CFG.whatsappNumber
         : a.key === 'call' ? CFG.callNumber : CFG.supportEmail);
       var cta = el('span', 'contact-card__cta', 'Open ' + a.label + ' →');
       card.appendChild(icon);
-      card.appendChild(h3);
+      card.appendChild(h2);
       card.appendChild(p);
       card.appendChild(value);
       card.appendChild(cta);

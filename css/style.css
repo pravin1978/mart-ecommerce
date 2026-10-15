@@ -211,6 +211,12 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.9;
 }
 
+/* On small screens the banner wraps taller than the default 40px body
+   padding, which could clip the footer. Keep clear space beneath it. */
+@media (max-width: 640px) {
+  body[style*="padding-bottom"] { padding-bottom: 64px !important; }
+}
+
 /* Demo badge on product cards.
    Top-LEFT so it never collides with .product-actions (top-right). */
 .demo-product-badge {
@@ -2120,6 +2126,21 @@ a.category-card:focus-visible { outline: 2px solid var(--blue); outline-offset: 
   border-width: 0;
 }
 
+/* The product page already states the title in the page-hero <h1>.
+   The detail column repeats it — keep it for screen readers only so the
+   heading is not visibly duplicated on the page. */
+.product-detail-name {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 .loading {
   display: inline-block;
   width: 20px;
@@ -3272,11 +3293,16 @@ html, body { overflow-x: hidden; max-width: 100%; }
   flex-direction: column;
   align-items: flex-end;
   gap: var(--space-3);
+  /* The wrapper must never block clicks on the page beneath it.
+     The hidden panel still occupies layout even when invisible, so
+     only the toggle and the opened panel are interactive. */
+  pointer-events: none;
 }
 /* Sit above the fixed orange demo banner (index & product inject it) */
 .contact-fab.has-demo-banner { bottom: calc(40px + var(--space-6)); }
 
 .contact-fab__toggle {
+  pointer-events: auto;
   width: 56px;
   height: 56px;
   border-radius: var(--radius-full);
@@ -3323,6 +3349,7 @@ html, body { overflow-x: hidden; max-width: 100%; }
   opacity: 1;
   visibility: visible;
   transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 .contact-fab__item {
@@ -3499,6 +3526,19 @@ html, body { overflow-x: hidden; max-width: 100%; }
   color: rgba(255, 255, 255, 0.45);
 }
 
+/* ---------- Contact page layout ---------- */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+/* Two columns only when both fit comfortably (>= 861px). */
+@media (min-width: 861px) {
+  .contact-layout { grid-template-columns: 1fr 1fr; }
+}
+
 /* ---------- Contact page cards ---------- */
 .contact-cards {
   display: grid;
@@ -3540,7 +3580,8 @@ html, body { overflow-x: hidden; max-width: 100%; }
 .contact-card[data-method="whatsapp"] .contact-card__icon { background: #25D366; }
 .contact-card[data-method="call"] .contact-card__icon { background: linear-gradient(135deg, var(--blue), var(--blue-dark)); }
 .contact-card[data-method="email"] .contact-card__icon { background: linear-gradient(135deg, var(--purple), #6D28D9); }
-.contact-card h3 { font-size: var(--font-size-base); font-weight: 600; color: var(--navy); }
+.contact-card h3,
+.contact-card h2 { font-size: var(--font-size-base); font-weight: 600; color: var(--navy); }
 .contact-card p { font-size: var(--font-size-sm); color: var(--gray-500); line-height: 1.6; }
 .contact-card__value {
   font-size: var(--font-size-sm);
