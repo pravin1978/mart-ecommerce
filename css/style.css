@@ -301,6 +301,9 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
+.header-logo { height: 40px; width: auto; max-width: 200px; object-fit: contain; }
+@media (max-width: 640px) { .header-logo { height: 32px; max-width: 170px; } }
+
 .header-search input {
   width: 100%;
   padding: 0.65rem 1rem 0.65rem 2.75rem;
