@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digimart — Digital Products Marketplace (Demo)</title>
+  <title>Digimart — Digital Tools. Smarter Business.</title>
   <meta name="description" content="Digimart is a digital products marketplace. This is a demo preview with sample products and prices. No real purchases are available.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,9 +20,8 @@
   <!-- Header -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="index.html" class="logo">
-        <span class="logo-icon">D</span>
-        <span class="logo-text">Digimart</span>
+      <a href="index.html" class="logo" aria-label="Digimart home">
+        <img src="assets/logo-compact.svg" alt="Digimart" height="36" width="auto">
       </a>
       <div class="header-search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
@@ -55,6 +55,7 @@
       <div class="hero-badge">Demo Preview</div>
       <h1>Everything Digital.<br><span class="gradient-text">One Marketplace.</span></h1>
       <p class="hero-description">Discover premium software, expert-led courses, beautifully crafted templates, and creative assets — all with instant delivery and secure payments.</p>
+      <p class="hero-slogan">Digital Tools. Smarter Business.</p>
       <div class="hero-ctas">
         <a href="#products" class="btn btn-primary">
           Explore Products
@@ -62,24 +63,7 @@
         </a>
         <a href="#categories" class="btn btn-secondary">Browse Categories</a>
       </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <h3>25,000+</h3>
-          <p>Digital Products</p>
-        </div>
-        <div class="hero-stat">
-          <h3>1,00,000+</h3>
-          <p>Happy Customers</p>
-        </div>
-        <div class="hero-stat">
-          <h3>5,000+</h3>
-          <p>Active Creators</p>
-        </div>
-        <div class="hero-stat">
-          <h3>4.9/5</h3>
-          <p>Average Rating</p>
-        </div>
-      </div>
+      <p style="margin-top: var(--space-4); font-size: var(--font-size-sm); color: var(--gray-400);">Demo preview — sample products shown for presentation only. No real purchases available.</p>
     </div>
   </section>
 
@@ -151,7 +135,7 @@
       <div class="products-header">
         <div>
           <span class="section-label">Sample Collection</span>
-          <h2 class="section-title">Featured <span style="background: linear-gradient(135deg, var(--indigo), var(--violet)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Digital Products</span></h2>
+          <h2 class="section-title">Featured <span style="background: var(--brand-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Digital Products</span></h2>
           <p class="section-subtitle">Sample products shown for demonstration purposes</p>
         </div>
         <div class="products-filter">
@@ -184,7 +168,7 @@
   <section class="section benefits-section">
     <div class="section-inner">
       <div class="section-header">
-        <span class="section-label" style="color: var(--accent-cyan);">Why Digimart</span>
+        <span class="section-label" style="color: var(--blue-light);">Why Digimart</span>
         <h2 class="section-title">The Digital Shopping Experience You Deserve</h2>
         <p class="section-subtitle">We've built a marketplace that puts creators and customers first</p>
       </div>
@@ -244,6 +228,23 @@
           <div class="step-number">3</div>
           <h3>Access</h3>
           <p>Get instant download access and lifetime updates for your purchase</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials-section" id="testimonials">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label">Testimonials</span>
+        <h2 class="section-title">What Our Customers Say</h2>
+        <p class="section-subtitle">Your feedback matters. Real customer testimonials will appear here as Digimart grows.</p>
+      </div>
+      <div class="testimonials-grid" id="testimonialsGrid">
+        <div class="testimonials-loading" style="grid-column: 1 / -1; text-align: center; padding: 4rem;">
+          <div class="loading" style="margin: 0 auto;"></div>
+          <p style="margin-top: 1rem; color: var(--gray-500);">Loading testimonials...</p>
         </div>
       </div>
     </div>
@@ -335,9 +336,8 @@
     <div class="footer-container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="index.html" class="logo">
-            <span class="logo-icon">D</span>
-            <span class="logo-text">Digimart</span>
+          <a href="index.html" aria-label="Digimart home">
+            <img src="assets/logo-white.svg" alt="Digimart" height="36" width="auto" style="margin-bottom: 1rem;">
           </a>
           <p>India's premium marketplace for digital products. Quality software, courses, eBooks, templates and creative assets from trusted creators.</p>
           <div class="social-links">
@@ -398,7 +398,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Digimart. All rights reserved. Demo preview — no real purchases available.</p>
+        <p>&copy; 2026 Digimart. Digital Tools. Smarter Business. All rights reserved. Demo preview — no real purchases available.</p>
         <div class="footer-payments">
           <span class="footer-payment-badge" style="opacity: 0.5;">Razorpay (Demo)</span>
           <span class="footer-payment-badge" style="opacity: 0.5;">UPI (Demo)</span>
@@ -432,10 +432,41 @@
 
   <!-- App Scripts -->
   <script src="js/products.js"></script>
+  <script src="js/testimonials.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/app.js"></script>
 
   <script>
+    // Render testimonials
+    function renderTestimonials() {
+      const grid = document.getElementById('testimonialsGrid');
+      if (!grid || typeof TESTIMONIALS === 'undefined') return;
+
+      grid.innerHTML = TESTIMONIALS.map(t => {
+        const initials = getInitials(t.name);
+        const avatarColor = getAvatarColor(t.id);
+        const stars = t.rating > 0 ? '★'.repeat(t.rating) + '☆'.repeat(5 - t.rating) : '☆☆☆☆☆';
+
+        return `
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <div class="testimonial-avatar" style="background: ${avatarColor};">${initials}</div>
+              <div class="testimonial-info">
+                <h4>${t.name}</h4>
+                <p>${t.role}</p>
+              </div>
+            </div>
+            <div class="testimonial-stars" title="Sample rating placeholder">${stars}</div>
+            <p class="testimonial-text">"${t.review}"</p>
+            <span class="testimonial-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+              Demo Placeholder
+            </span>
+          </div>
+        `;
+      }).join('');
+    }
+
     // Cart button opens sidebar
     document.getElementById('cartBtn').addEventListener('click', () => {
       document.querySelector('.cart-sidebar')?.classList.add('open');
@@ -454,6 +485,9 @@
       this.textContent = 'All sample products loaded';
       this.disabled = true;
     });
+
+    // Initialize testimonials on load
+    document.addEventListener('DOMContentLoaded', renderTestimonials);
   </script>
 </body>
 </html>

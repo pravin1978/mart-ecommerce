@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40">
+  <defs>
+    <linearGradient id="logoGradC" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(2, 4)">
+    <path d="M12 3 L24 12 L12 21 L0 12 Z" fill="none" stroke="url(#logoGradC)" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M12 7.5 L19 12 L12 16.5 L5 12 Z" fill="url(#logoGradC)" opacity="0.15"/>
+    <path d="M9 12 L15 12 M12 9 L15 12 L12 15" stroke="url(#logoGradC)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  <text x="34" y="26" font-family="Inter, -apple-system, sans-serif" font-size="18" font-weight="800" fill="#0B1220" letter-spacing="-0.5">DIGIMART</text>
+</svg>

@@ -4,14 +4,15 @@
    ============================================ */
 
 :root {
-  /* Colors */
-  --navy: #0a0e27;
+  /* Digimart Brand Colors */
+  --navy: #0B1220;
   --navy-light: #131a3a;
   --navy-lighter: #1a2248;
-  --indigo: #4f46e5;
-  --indigo-light: #6366f1;
-  --violet: #7c3aed;
-  --violet-light: #8b5cf6;
+  --blue: #2563EB;
+  --blue-light: #3B82F6;
+  --blue-dark: #1D4ED8;
+  --purple: #7C3AED;
+  --purple-light: #8B5CF6;
   --accent-cyan: #06b6d4;
   --accent-emerald: #10b981;
   --accent-amber: #f59e0b;
@@ -27,6 +28,15 @@
   --gray-700: #334155;
   --gray-800: #1e293b;
   --gray-900: #0f172a;
+
+  /* Brand gradient */
+  --brand-gradient: linear-gradient(135deg, var(--blue), var(--purple));
+
+  /* Legacy aliases (backward-compat mapping to brand palette) */
+  --indigo: #2563EB;
+  --indigo-light: #3B82F6;
+  --violet: #7C3AED;
+  --violet-light: #8B5CF6;
 
   /* Typography */
   --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -2112,5 +2122,120 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Selection */
 ::selection {
-  background: rgba(79, 70, 229, 0.2);
+  background: rgba(37, 99, 235, 0.2);
+}
+
+/* ============================================
+   TESTIMONIALS SECTION
+   ============================================ */
+
+.testimonials-section {
+  background: var(--white);
+  padding: var(--space-16) 0;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.testimonial-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.testimonial-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gray-300);
+  transform: translateY(-2px);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.testimonial-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.testimonial-info h4 {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 0.15rem;
+}
+
+.testimonial-info p {
+  font-size: var(--font-size-xs);
+  color: var(--gray-500);
+}
+
+.testimonial-stars {
+  color: var(--gray-300);
+  font-size: var(--font-size-sm);
+  letter-spacing: 2px;
+  margin-bottom: var(--space-3);
+}
+
+.testimonial-text {
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+  line-height: 1.7;
+  flex: 1;
+  font-style: italic;
+}
+
+.testimonial-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: var(--space-4);
+  padding: 0.35rem 0.75rem;
+  background: #FEF3C7;
+  color: #92400E;
+  border-radius: var(--radius-full);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  align-self: flex-start;
+}
+
+.testimonial-badge svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Responsive testimonials */
+@media (max-width: 1024px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
 }
