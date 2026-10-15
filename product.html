@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Details — Digimart</title>
-  <meta name="description" content="View product details, features, licensing and purchase options on Digimart.">
+  <title>Product Details — Digimart (Demo)</title>
+  <meta name="description" content="View sample product details on Digimart demo. No real purchases are available.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
 
       <!-- Related Products -->
       <section style="margin-top: var(--space-16);">
-        <h2 style="font-size: var(--font-size-2xl); font-weight: 700; margin-bottom: var(--space-6);">Related Products</h2>
+        <h2 style="font-size: var(--font-size-2xl); font-weight: 700; margin-bottom: var(--space-6);">Related Sample Products</h2>
         <div class="products-grid" id="relatedProducts" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));"></div>
       </section>
     </div>
@@ -87,10 +87,10 @@
         <div class="footer-column">
           <h4>Categories</h4>
           <ul>
-            <li><a href="index.html#products">Software</a></li>
-            <li><a href="index.html#products">Courses</a></li>
+            <li><a href="index.html#products">AI Tools</a></li>
             <li><a href="index.html#products">eBooks</a></li>
             <li><a href="index.html#products">Templates</a></li>
+            <li><a href="index.html#products">Courses</a></li>
             <li><a href="index.html#products">Graphics</a></li>
           </ul>
         </div>
@@ -112,14 +112,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Digimart. All rights reserved.</p>
-        <div class="footer-payments">
-          <span class="footer-payment-badge">Razorpay</span>
-          <span class="footer-payment-badge">UPI</span>
-          <span class="footer-payment-badge">VISA</span>
-          <span class="footer-payment-badge">Mastercard</span>
-          <span class="footer-payment-badge">PayPal</span>
-        </div>
+        <p>&copy; 2026 Digimart. All rights reserved. Demo preview — no real purchases available.</p>
       </div>
     </div>
   </footer>
@@ -127,6 +120,7 @@
   <!-- Scripts -->
   <script src="js/products.js"></script>
   <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
   <script>
     // Get product ID from URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -135,14 +129,15 @@
 
     if (product) {
       // Update page title and hero
-      document.title = `${product.name} — Digimart`;
-      document.getElementById('productName').textContent = product.name;
+      document.title = `${product.name} — Digimart (Demo)`;
+      document.getElementById('productName').textContent = product.name + ' (Sample)';
       document.getElementById('productShortDesc').textContent = product.shortDescription;
 
-      // Calculate discount
-      const discount = product.originalPrice
-        ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
-        : null;
+      const ratingDisplay = product.rating > 0
+        ? `<span class="stars">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}</span>
+           <span>${product.rating}</span>
+           <span>(${product.reviews} reviews)</span>`
+        : `<span style="color: var(--gray-400); font-size: 0.875rem;">No reviews yet — Sample product</span>`;
 
       // Render product detail
       document.getElementById('productDetail').innerHTML = `
@@ -154,48 +149,49 @@
             <div class="product-gallery-thumbs">
               ${product.gallery.map((img, i) => `
                 <div class="product-gallery-thumb ${i === 0 ? 'active' : ''}" data-img="${img}">
-                  <img src="${img}" alt="${product.name} screenshot ${i + 1}">
+                  <img src="${img}" alt="${product.name} preview ${i + 1}">
                 </div>
               `).join('')}
             </div>
           ` : ''}
         </div>
         <div class="product-detail-info">
-          <span class="product-detail-category">${product.categoryLabel}</span>
+          <span class="product-detail-category">${product.categoryLabel} — Sample</span>
           <h2 class="product-detail-name">${product.name}</h2>
-          <div class="product-detail-rating">
-            <span class="stars">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}</span>
-            <span>${product.rating} rating</span>
-            <span>(${product.reviews.toLocaleString()} reviews)</span>
-          </div>
+          <div class="product-detail-rating">${ratingDisplay}</div>
           <div class="product-detail-price">
             <span class="current">₹${product.price.toLocaleString('en-IN')}</span>
+            <span class="demo-price-tag">Demo Price</span>
             ${product.originalPrice ? `<span class="original">₹${product.originalPrice.toLocaleString('en-IN')}</span>` : ''}
-            ${discount ? `<span class="discount-badge">${discount}% OFF</span>` : ''}
           </div>
           <p class="product-detail-description">${product.description}</p>
 
+          <div style="background: #fef3c7; border: 1px solid #fbbf24; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+            <p style="font-size: 0.8rem; color: #92400e; font-weight: 600; margin-bottom: 0.25rem;">⚠️ DEMO PRODUCT</p>
+            <p style="font-size: 0.75rem; color: #92400e;">This is a sample product for demonstration purposes. Features, pricing, and availability are illustrative only.</p>
+          </div>
+
           <div class="product-detail-section">
-            <h3>Key Features</h3>
+            <h3>Sample Features</h3>
             <ul class="product-features">
               ${product.features.map(f => `<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>${f}</li>`).join('')}
             </ul>
           </div>
 
           <div class="product-detail-section">
-            <h3>What's Included</h3>
+            <h3>What's Included (Sample)</h3>
             <ul class="product-features">
               ${product.includes.map(i => `<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>${i}</li>`).join('')}
             </ul>
           </div>
 
           <div class="product-detail-section">
-            <h3>System Requirements</h3>
+            <h3>System Requirements (Sample)</h3>
             <p style="font-size: var(--font-size-sm); color: var(--gray-600);">${product.systemRequirements}</p>
           </div>
 
           <div class="product-detail-section">
-            <h3>License & Delivery</h3>
+            <h3>License & Delivery (Sample)</h3>
             <ul class="product-features">
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>License: ${product.licenseType}</li>
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Delivery: ${product.delivery}</li>
@@ -206,11 +202,11 @@
           <div class="product-detail-actions">
             <button class="btn btn-outline" id="addToCartBtn">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-              Add to Cart
+              Add to Cart (Demo)
             </button>
             <button class="btn btn-primary" id="buyNowBtn">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              Buy Now
+              Buy Now (Demo)
             </button>
           </div>
         </div>
@@ -228,38 +224,48 @@
       // Add to cart button
       document.getElementById('addToCartBtn').addEventListener('click', () => {
         Cart.addItem(product);
-        alert(`${product.name} added to cart!`);
+        Toast.success(`${product.name} added to cart (Demo)`);
       });
 
-      // Buy now button
+      // Buy now button — DEMO ONLY
       document.getElementById('buyNowBtn').addEventListener('click', () => {
         Cart.addItem(product);
-        alert(`Proceeding to checkout...\n\nTotal: ₹${product.price.toLocaleString('en-IN')}\n\nPayment methods: Razorpay, UPI\n\nNOTE: This is a demo. In production, you would be redirected to Razorpay for secure payment.`);
+        const total = product.price;
+        alert(
+          `=== DEMO CHECKOUT ===\n\n` +
+          `This is a demonstration only. No real payment will be processed.\n\n` +
+          `Product: ${product.name}\n` +
+          `Price: ₹${total.toLocaleString('en-IN')} (Demo)\n\n` +
+          `In production, you would be redirected to Razorpay for secure payment.`
+        );
         Cart.clear();
       });
 
       // Render related products
       const related = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 3);
-      document.getElementById('relatedProducts').innerHTML = related.map(p => `
-        <article class="product-card" onclick="window.location.href='product.html?id=${p.id}'">
-          <div class="product-image">
-            <img src="${p.image}" alt="${p.name}" loading="lazy">
-          </div>
-          <div class="product-info">
-            <span class="product-category">${p.categoryLabel}</span>
-            <h3 class="product-name">${p.name}</h3>
-            <div class="product-rating">
-              <span class="stars">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5 - Math.floor(p.rating))}</span>
-              <span class="rating-value">${p.rating}</span>
+      const relatedContainer = document.getElementById('relatedProducts');
+      if (related.length > 0) {
+        relatedContainer.innerHTML = related.map(p => `
+          <article class="product-card" onclick="window.location.href='product.html?id=${p.id}'">
+            <div class="product-image">
+              <img src="${p.image}" alt="${p.name}" loading="lazy">
+              <span class="demo-product-badge">Sample</span>
             </div>
-            <div class="product-footer">
-              <div class="product-price">
-                <span class="current">₹${p.price.toLocaleString('en-IN')}</span>
+            <div class="product-info">
+              <span class="product-category">${p.categoryLabel}</span>
+              <h3 class="product-name">${p.name}</h3>
+              <div class="product-footer">
+                <div class="product-price">
+                  <span class="current">₹${p.price.toLocaleString('en-IN')}</span>
+                  <span class="demo-price-tag">Demo</span>
+                </div>
               </div>
             </div>
-          </div>
-        </article>
-      `).join('');
+          </article>
+        `).join('');
+      } else {
+        relatedContainer.innerHTML = '<p style="color: var(--gray-500); grid-column: 1 / -1; text-align: center;">No related sample products in this category.</p>';
+      }
 
     } else {
       document.getElementById('productDetail').innerHTML = `

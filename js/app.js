@@ -1,5 +1,5 @@
 // ============================================
-// DIGIMART MAIN APPLICATION
+// DIGIMART MAIN APPLICATION — DEMO MODE
 // ============================================
 
 // Toast notifications
@@ -44,6 +44,27 @@ const Toast = {
   }
 };
 
+// Demo Mode Banner
+const DemoBanner = {
+  init() {
+    // Check if already exists
+    if (document.querySelector('.demo-mode-banner')) return;
+
+    const banner = document.createElement('div');
+    banner.className = 'demo-mode-banner';
+    banner.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+      </svg>
+      <span>DEMO PREVIEW — Sample products and prices. No real purchases are available.</span>
+    `;
+    document.body.appendChild(banner);
+
+    // Add padding to body so banner doesn't cover content
+    document.body.style.paddingBottom = '40px';
+  }
+};
+
 // Cart Sidebar
 const CartSidebar = {
   sidebar: null,
@@ -61,7 +82,7 @@ const CartSidebar = {
     this.sidebar.className = 'cart-sidebar';
     this.sidebar.innerHTML = `
       <div class="cart-header">
-        <h2>Shopping Cart</h2>
+        <h2>Shopping Cart (Demo)</h2>
         <button class="cart-close" aria-label="Close cart">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 6L6 18M6 6l12 12"/>
@@ -72,11 +93,11 @@ const CartSidebar = {
       <div class="cart-footer">
         <div class="cart-summary">
           <div class="cart-summary-row">
-            <span>Subtotal</span>
+            <span>Subtotal (Demo)</span>
             <span id="cart-subtotal">₹0</span>
           </div>
           <div class="cart-summary-row total">
-            <span>Total</span>
+            <span>Total (Demo)</span>
             <span class="amount" id="cart-total">₹0</span>
           </div>
         </div>
@@ -85,16 +106,13 @@ const CartSidebar = {
             <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
             <path d="M12 18h.01"/>
           </svg>
-          Proceed to Checkout
+          Demo Checkout
         </button>
         <div class="cart-payment-methods">
-          <p>Secure payments powered by</p>
+          <p>Demo mode — no real payments processed</p>
           <div class="cart-payment-badges">
-            <span class="cart-payment-badge">Razorpay</span>
-            <span class="cart-payment-badge">UPI</span>
-            <span class="cart-payment-badge">VISA</span>
-            <span class="cart-payment-badge">Mastercard</span>
-            <span class="cart-payment-badge">PayPal</span>
+            <span class="cart-payment-badge" style="opacity: 0.5;">Razorpay (Demo)</span>
+            <span class="cart-payment-badge" style="opacity: 0.5;">UPI (Demo)</span>
           </div>
         </div>
       </div>
@@ -135,7 +153,7 @@ const CartSidebar = {
     const total = Cart.getTotal();
 
     // Update header count
-    this.sidebar.querySelector('.cart-header h2').innerHTML = `Shopping Cart <span style="color: var(--gray-400); font-size: 0.875rem;">(${count})</span>`;
+    this.sidebar.querySelector('.cart-header h2').innerHTML = `Shopping Cart (Demo) <span style="color: var(--gray-400); font-size: 0.875rem;">(${count})</span>`;
 
     // Update totals
     this.sidebar.querySelector('#cart-subtotal').textContent = `₹${total.toLocaleString('en-IN')}`;
@@ -150,7 +168,7 @@ const CartSidebar = {
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
           </svg>
           <h3>Your cart is empty</h3>
-          <p>Browse our products and add items to your cart</p>
+          <p>Browse our sample products and add items to your cart</p>
         </div>
       `;
     } else {
@@ -161,7 +179,7 @@ const CartSidebar = {
           </div>
           <div class="cart-item-details">
             <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-price">₹${item.price.toLocaleString('en-IN')}</div>
+            <div class="cart-item-price">₹${item.price.toLocaleString('en-IN')} <span style="color: var(--accent-amber); font-size: 0.7rem;">(Demo)</span></div>
             <div class="cart-item-qty">
               <button class="qty-decrease" aria-label="Decrease quantity">−</button>
               <span>${item.quantity}</span>
@@ -207,20 +225,24 @@ const CartSidebar = {
     const total = Cart.getTotal();
     const itemCount = items.length;
 
-    // NOTE: This is a placeholder for the actual Razorpay integration.
-    // In production, you would:
-    // 1. Send order details to your backend
-    // 2. Backend creates a Razorpay order
-    // 3. Open Razorpay checkout modal
-    // 4. Verify payment on backend
-    // 5. Grant download access
+    // DEMO CHECKOUT — No real payment processing
+    const orderSummary = items.map(item => 
+      `• ${item.name} — ₹${item.price.toLocaleString('en-IN')} x${item.quantity}`
+    ).join('\n');
 
-    alert(`Order Summary:\n\n${itemCount} item(s)\nTotal: ₹${total.toLocaleString('en-IN')}\n\nPayment methods: Razorpay, UPI\n\nNOTE: This is a demo. In production, you would be redirected to Razorpay for secure payment processing. After successful payment, your digital products will be delivered to your email.`);
+    alert(
+      `=== DEMO CHECKOUT ===\n\n` +
+      `This is a demonstration only. No real payment will be processed.\n\n` +
+      `Order Summary:\n${orderSummary}\n\n` +
+      `Total: ₹${total.toLocaleString('en-IN')}\n\n` +
+      `In production, you would be redirected to Razorpay for secure payment.\n` +
+      `After successful payment, digital products would be delivered to your email.`
+    );
 
-    // Clear cart after "purchase"
+    // Clear cart after demo checkout
     Cart.clear();
     this.close();
-    Toast.success('Thank you for your purchase!');
+    Toast.success('Demo order completed! (No real purchase was made)');
   }
 };
 
@@ -258,11 +280,18 @@ const ProductRenderer = {
       ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
       : null;
 
+    const ratingDisplay = product.rating > 0
+      ? `<span class="stars">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}</span>
+         <span class="rating-value">${product.rating}</span>
+         <span class="review-count">(${product.reviews.toLocaleString()})</span>`
+      : `<span style="color: var(--gray-400); font-size: 0.8rem;">No reviews yet</span>`;
+
     return `
       <article class="product-card" data-id="${product.id}">
         <div class="product-image">
           <img src="${product.image}" alt="${product.name}" loading="lazy">
-          ${product.badge ? `<span class="product-badge ${product.badge}">${product.badge === 'bestseller' ? 'Bestseller' : product.badge === 'new' ? 'New' : 'Sale'}</span>` : ''}
+          <span class="demo-product-badge">Sample</span>
+          ${product.badge && product.badge !== 'sample' ? `<span class="product-badge ${product.badge}">${product.badge === 'bestseller' ? 'Bestseller' : product.badge === 'new' ? 'New' : 'Sale'}</span>` : ''}
           <div class="product-actions">
             <button class="product-action-btn" onclick="window.location.href='product.html?id=${product.id}'" aria-label="View details">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -281,14 +310,11 @@ const ProductRenderer = {
           <span class="product-category">${product.categoryLabel}</span>
           <h3 class="product-name">${product.name}</h3>
           <p class="product-description">${product.shortDescription}</p>
-          <div class="product-rating">
-            <span class="stars">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}</span>
-            <span class="rating-value">${product.rating}</span>
-            <span class="review-count">(${product.reviews.toLocaleString()})</span>
-          </div>
+          <div class="product-rating">${ratingDisplay}</div>
           <div class="product-footer">
             <div class="product-price">
               <span class="current">₹${product.price.toLocaleString('en-IN')}</span>
+              <span class="demo-price-tag">Demo</span>
               ${product.originalPrice ? `<span class="original">₹${product.originalPrice.toLocaleString('en-IN')}</span>` : ''}
               ${discount ? `<span class="discount">${discount}% off</span>` : ''}
             </div>
@@ -314,7 +340,7 @@ const ProductRenderer = {
         const product = PRODUCTS.find(p => p.id === id);
         if (product) {
           Cart.addItem(product);
-          Toast.success(`${product.name} added to cart`);
+          Toast.success(`${product.name} added to cart (Demo)`);
         }
       });
     });
@@ -420,6 +446,7 @@ const FAQ = {
 
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
+  DemoBanner.init();
   Toast.init();
   CartSidebar.init();
   ProductRenderer.init();
@@ -436,12 +463,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   Cart.subscribe(updateCartCount);
   updateCartCount();
-
-  // Mobile menu toggle (if needed)
-  const menuToggle = document.querySelector('.menu-toggle');
-  if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-      document.querySelector('.category-nav').classList.toggle('open');
-    });
-  }
 });
