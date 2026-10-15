@@ -1579,14 +1579,16 @@ a.category-card:focus-visible { outline: 2px solid var(--blue); outline-offset: 
 }
 
 .cart-item-qty button {
-  width: 28px;
-  height: 28px;
+  /* Enlarged to meet a usable touch target (was 28x28). */
+  width: 34px;
+  height: 34px;
   border-radius: var(--radius-sm);
   background: var(--gray-100);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
+  font-size: var(--font-size-base);
   color: var(--gray-600);
   transition: all var(--transition-fast);
 }
@@ -1606,7 +1608,9 @@ a.category-card:focus-visible { outline: 2px solid var(--blue); outline-offset: 
 .cart-item-remove {
   color: var(--gray-400);
   transition: color var(--transition-fast);
-  padding: var(--space-1);
+  /* Enlarged hit area without changing the visual icon size. */
+  padding: var(--space-3);
+  margin: calc(-1 * var(--space-3));
 }
 
 .cart-item-remove:hover {

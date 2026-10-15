@@ -131,6 +131,15 @@ const CartSidebar = {
       cartBtn.addEventListener('click', () => this.open());
     }
 
+    // Escape closes the cart (keyboard parity with the close button / overlay)
+    if (!document.documentElement.dataset.cartEscBound) {
+      document.documentElement.dataset.cartEscBound = '1';
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        if (this.sidebar && this.sidebar.classList.contains('open')) this.close();
+      });
+    }
+
     // Subscribe to cart changes
     Cart.subscribe(() => this.render());
 
@@ -243,7 +252,7 @@ const CartSidebar = {
       `This is a demonstration only. No real payment will be processed.\n\n` +
       `Order Summary:\n${orderSummary}\n\n` +
       `Total: ₹${total.toLocaleString('en-IN')}\n\n` +
-      `In production, you would be redirected to Razorpay for secure payment.\n` +
+      `In production, you would be redirected to a secure payment gateway.\n` +
       `After successful payment, digital products would be delivered to your email.`
     );
 
@@ -365,6 +374,62 @@ const ProductRenderer = {
     });
   },
 
+  // Current filter state, shared by category / search / sort so the three
+  // controls compose instead of each one resetting the others.
+  activeCategory: 'all',
+  activeQuery: '',
+
+  // Compute the list matching the active category + search query.
+  getFiltered() {
+    let list = PRODUCTS;
+
+    if (this.activeCategory && this.activeCategory !== 'all') {
+      list = list.filter(p => p.category === this.activeCategory);
+    }
+
+    const query = (this.activeQuery || '').toLowerCase().trim();
+    if (query) {
+      list = list.filter(p => {
+        const hay = [p.name, p.shortDescription, p.description, p.categoryLabel, p.format || '', p.keywords || '']
+          .join(' ')
+          .toLowerCase();
+        return hay.includes(query);
+      });
+    }
+
+    return list;
+  },
+
+  // Apply category + query, then the current sort selection, then render.
+  applyFilters() {
+    const sorted = [...this.getFiltered()];
+
+    const sortSelect = document.getElementById('sortSelect');
+    const sortBy = sortSelect ? sortSelect.value : 'default';
+
+    switch (sortBy) {
+      case 'price-low':
+        sorted.sort((a, b) => a.price - b.price);
+        break;
+      case 'price-high':
+        sorted.sort((a, b) => b.price - a.price);
+        break;
+      case 'name':
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'category':
+        sorted.sort((a, b) => a.categoryLabel.localeCompare(b.categoryLabel) || a.name.localeCompare(b.name));
+        break;
+      case 'newest':
+        sorted.sort((a, b) => b.id - a.id);
+        break;
+      default:
+        break;
+    }
+
+    this.render(sorted);
+  },
+
   setupFilters() {
     // Category filters
     document.querySelectorAll('.category-link').forEach(link => {
@@ -373,64 +438,53 @@ const ProductRenderer = {
         document.querySelectorAll('.category-link').forEach(l => l.classList.remove('active'));
         link.classList.add('active');
 
-        const category = link.dataset.category;
-        const filtered = category === 'all'
-          ? PRODUCTS
-          : PRODUCTS.filter(p => p.category === category);
-        this.render(filtered);
+        this.activeCategory = link.dataset.category || 'all';
+        this.applyFilters();
       });
     });
 
-    // Search
+    // Category cards ("Browse by Category" tiles) — filter the same way the
+    // nav links do, then scroll the grid into view. Without this the tiles
+    // only jump to #products and show nothing filtered.
+    document.querySelectorAll('.category-card[data-category-link]').forEach(card => {
+      card.addEventListener('click', (e) => {
+        const category = card.dataset.categoryLink;
+        if (!category) return;
+
+        e.preventDefault();
+
+        const navLink = document.querySelector('.category-link[data-category="' + category + '"]');
+        document.querySelectorAll('.category-link').forEach(l => l.classList.remove('active'));
+        if (navLink) navLink.classList.add('active');
+
+        this.activeCategory = category;
+        this.applyFilters();
+
+        const target = document.getElementById('products');
+        if (target) {
+          const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Search — applies on top of the active category
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
       let debounceTimer;
       searchInput.addEventListener('input', (e) => {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
-          const query = e.target.value.toLowerCase().trim();
-          const filtered = query
-            ? PRODUCTS.filter(p => {
-                const hay = [p.name, p.shortDescription, p.description, p.categoryLabel, p.format || '', p.keywords || '']
-                  .join(' ')
-                  .toLowerCase();
-                return hay.includes(query);
-              })
-            : PRODUCTS;
-          this.render(filtered);
+          this.activeQuery = e.target.value;
+          this.applyFilters();
         }, 300);
       });
     }
 
-    // Sort
+    // Sort — reorders the currently filtered set
     const sortSelect = document.getElementById('sortSelect');
     if (sortSelect) {
-      sortSelect.addEventListener('change', (e) => {
-        const sortBy = e.target.value;
-        let sorted = [...PRODUCTS];
-
-        switch (sortBy) {
-          case 'price-low':
-            sorted.sort((a, b) => a.price - b.price);
-            break;
-          case 'price-high':
-            sorted.sort((a, b) => b.price - a.price);
-            break;
-          case 'name':
-            sorted.sort((a, b) => a.name.localeCompare(b.name));
-            break;
-          case 'category':
-            sorted.sort((a, b) => a.categoryLabel.localeCompare(b.categoryLabel) || a.name.localeCompare(b.name));
-            break;
-          case 'newest':
-            sorted.sort((a, b) => b.id - a.id);
-            break;
-          default:
-            sorted = PRODUCTS;
-        }
-
-        this.render(sorted);
-      });
+      sortSelect.addEventListener('change', () => this.applyFilters());
     }
   }
 };
