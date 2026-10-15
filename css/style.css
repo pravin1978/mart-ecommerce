@@ -410,12 +410,50 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: var(--space-2);
   overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  scrollbar-width: auto;
+  -ms-overflow-style: auto;
+  /* Desktop: subtle scroll indicator */
+  &::before {
+    content: '← drag to scroll →';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    padding: 0 var(--space-6);
+    color: var(--gray-500);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    pointer-events: none;
+    white-space: spread;
+    transform: translateY(-50%);
+    background: var(--white);
+    pointer-events: none;
+  }
+  &::after {
+    content: '← drag to scroll →';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    padding: 0 var(--space-6);
+    color: var(--gray-500);
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    pointer-events: none;
+    white-space: spread;
+    transform: translateY(-50%) reverse;
+    background: var(--white);
+    pointer-events: none;
+  }
 }
 
 .category-nav-inner::-webkit-scrollbar {
-  display: none;
+  height: 8px;
+  background: var(--gray-100);
+  border-radius: var(--radius-full);
+}
+
+.category-nav-inner::-webkit-scrollbar-thumb {
+  background: var(--indigo);
+  border-radius: var(--radius-full);
 }
 
 .category-link {
@@ -426,6 +464,7 @@ h1, h2, h3, h4, h5, h6 {
   white-space: nowrap;
   border-bottom: 2px solid transparent;
   transition: all var(--transition-fast);
+  flex: 1;
 }
 
 .category-link:hover,
