@@ -283,7 +283,7 @@ const ProductRenderer = {
       ? `<span class="stars">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}</span>
          <span class="rating-value">${product.rating}</span>
          <span class="review-count">(${product.reviews.toLocaleString()})</span>`
-      : `<span style="color: var(--gray-400); font-size: 0.8rem;">No reviews yet — sample product</span>`;
+      : `<span style="color: var(--gray-600); font-size: 0.8rem;">No reviews yet — sample product</span>`;
 
     const alt = product.imageAlt || `${product.name} sample product mockup`;
 

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=5">
+  <link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body>
   <!-- Announcement Bar -->
@@ -54,6 +54,7 @@
     </nav>
   </header>
 
+  <main id="main">
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-inner">
@@ -68,7 +69,7 @@
         </a>
         <a href="#categories" class="btn btn-secondary">Browse Categories</a>
       </div>
-      <p style="margin-top: var(--space-4); font-size: var(--font-size-sm); color: var(--gray-400);">Demo preview — sample products shown for presentation only. No real purchases available.</p>
+      <p style="margin-top: var(--space-4); font-size: var(--font-size-sm); color: rgba(255,255,255,0.66);">Demo preview — sample products shown for presentation only. No real purchases available.</p>
     </div>
   </section>
 
@@ -342,6 +343,7 @@
       </div>
     </div>
   </section>
+  </main>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -354,7 +356,7 @@
           <p>A digital marketplace preview for software, courses, eBooks, templates and creative assets. Sample content only — real products and services are coming soon.</p>
         </div>
         <div class="footer-column">
-          <h4>Quick Links</h4>
+          <h2>Quick Links</h2>
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
@@ -365,7 +367,7 @@
           </ul>
         </div>
         <div class="footer-column">
-          <h4>Account</h4>
+          <h2>Account</h2>
           <ul>
             <li><a href="signin.html">Sign In (demo)</a></li>
             <li><a href="signup.html">Sign Up (demo)</a></li>
@@ -373,7 +375,7 @@
           </ul>
         </div>
         <div class="footer-column">
-          <h4>Categories</h4>
+          <h2>Categories</h2>
           <ul>
             <li><a href="index.html#products">AI Tools</a></li>
             <li><a href="index.html#products">SaaS &amp; Business Software</a></li>
@@ -384,7 +386,7 @@
           </ul>
         </div>
         <div class="footer-column">
-          <h4>Support</h4>
+          <h2>Support</h2>
           <ul>
             <li><a href="contact.html">Contact Us</a></li>
             <li><a href="faq.html">FAQ</a></li>
@@ -393,7 +395,7 @@
                     </ul>
         </div>
         <div class="footer-column">
-          <h4>Contact Info</h4>
+          <h2>Contact Info</h2>
           <p style="font-size: 0.7rem; color: var(--gray-500); margin-bottom: 0.5rem;">Demo Contact Details — Replace Before Launch</p>
           <ul class="footer-contact">
             <li>
@@ -444,10 +446,10 @@
   </script>
 
   <!-- App Scripts -->
-  <script src="js/products.js?v=5"></script>
-  <script src="js/testimonials.js?v=5"></script>
-  <script src="js/cart.js?v=5"></script>
-  <script src="js/app.js?v=5"></script>
+  <script src="js/products.js?v=6"></script>
+  <script src="js/testimonials.js?v=6"></script>
+  <script src="js/cart.js?v=6"></script>
+  <script src="js/app.js?v=6"></script>
 
   <script>
     // Render testimonials
@@ -465,7 +467,7 @@
             <div class="testimonial-header">
               <div class="testimonial-avatar" style="background:${avatarColor};width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.875rem;flex-shrink:0;">${initials}</div>
               <div class="testimonial-info">
-                <h4>${t.name}</h4>
+                <h3>${t.name}</h3>
                 <p>${t.role}</p>
               </div>
             </div>
@@ -501,6 +503,23 @@
 
     // Initialize testimonials on load
     document.addEventListener('DOMContentLoaded', renderTestimonials);
+
+    // Category nav: show edge fade only when more categories are scrollable
+    (function () {
+      const nav = document.querySelector('.category-nav');
+      const track = document.querySelector('.category-nav-inner');
+      if (!nav || !track) return;
+
+      function update() {
+        const more = track.scrollWidth - track.clientWidth - track.scrollLeft > 4;
+        nav.classList.toggle('is-scrollable-end', more);
+      }
+
+      track.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      window.addEventListener('load', update);
+      update();
+    })();
   </script>
 </body>
 </html>
