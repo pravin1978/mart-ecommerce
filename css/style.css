@@ -3256,3 +3256,334 @@ textarea:focus-visible,
 
 /* Prevent any horizontal page overflow at every width */
 html, body { overflow-x: hidden; max-width: 100%; }
+
+/* ============================================
+   CONTACT SYSTEM — FLOATING WIDGET, FOOTER, SOCIAL
+   Driven by js/config.js via js/contact.js
+   ============================================ */
+
+/* ---------- Floating contact widget ---------- */
+.contact-fab {
+  position: fixed;
+  right: var(--space-6);
+  bottom: calc(var(--space-6) + 8px);
+  z-index: var(--z-fixed);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+/* Sit above the fixed orange demo banner (index & product inject it) */
+.contact-fab.has-demo-banner { bottom: calc(40px + var(--space-6)); }
+
+.contact-fab__toggle {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+  box-shadow: 0 10px 26px -8px rgba(37, 99, 235, 0.7), 0 2px 8px rgba(11, 18, 32, 0.25);
+  transition: transform var(--transition-fast) var(--ease-out),
+              box-shadow var(--transition-fast),
+              filter var(--transition-fast);
+}
+.contact-fab__toggle svg { width: 26px; height: 26px; }
+.contact-fab__toggle:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 16px 34px -10px rgba(37, 99, 235, 0.85);
+  filter: brightness(1.05);
+}
+.contact-fab__toggle:active { transform: translateY(0) scale(1); }
+
+.contact-fab__panel {
+  width: 268px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px) scale(0.97);
+  transform-origin: bottom right;
+  transition: opacity var(--transition-base) var(--ease-out),
+              transform var(--transition-base) var(--ease-out),
+              visibility var(--transition-base);
+}
+.contact-fab.is-open .contact-fab__panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.contact-fab__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--gray-700);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.contact-fab__item:hover,
+.contact-fab__item:focus-visible {
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--navy);
+}
+.contact-fab__icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+.contact-fab__icon svg { width: 20px; height: 20px; }
+.contact-fab__item[data-fab-item="whatsapp"] .contact-fab__icon { background: #25D366; }
+.contact-fab__item[data-fab-item="call"] .contact-fab__icon { background: linear-gradient(135deg, var(--blue), var(--blue-dark)); }
+.contact-fab__item[data-fab-item="email"] .contact-fab__icon { background: linear-gradient(135deg, var(--purple), #6D28D9); }
+
+.contact-fab__text { display: flex; flex-direction: column; min-width: 0; }
+.contact-fab__text strong { font-size: var(--font-size-sm); font-weight: 600; color: var(--navy); }
+.contact-fab__text small {
+  font-size: 0.72rem;
+  color: var(--gray-500);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.contact-fab__note {
+  margin: var(--space-1) var(--space-2) var(--space-1);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--gray-100);
+  font-size: 0.68rem;
+  line-height: 1.5;
+  color: var(--gray-500);
+}
+
+/* ---------- Footer contact column ---------- */
+.footer-column--contact .footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.footer-contact-list li { margin: 0; }
+.footer-contact-list a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  padding: var(--space-2);
+  margin: calc(var(--space-2) * -1);
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.footer-contact-list a:hover,
+.footer-contact-list a:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+}
+.footer-contact-list__icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+}
+.footer-contact-list__icon svg { width: 17px; height: 17px; }
+.footer-contact-list__text { display: flex; flex-direction: column; min-width: 0; }
+.footer-contact-list__text strong { font-size: 0.8rem; font-weight: 600; color: var(--white); }
+.footer-contact-list__text small {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.footer-contact-note {
+  margin-top: var(--space-4);
+  font-size: 0.68rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ---------- Social icons ---------- */
+.footer-social { margin-top: var(--space-5); }
+.footer-social h3 {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-3);
+}
+.footer-social__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.footer-social__list li { margin: 0; }
+.footer-social__link,
+.footer-social__pending {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-decoration: none;
+}
+.footer-social__link svg,
+.footer-social__pending svg { width: 18px; height: 18px; }
+/* Configured = clickable */
+.footer-social__link {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast),
+              transform var(--transition-fast) var(--ease-out),
+              border-color var(--transition-fast);
+}
+.footer-social__link:hover,
+.footer-social__link:focus-visible {
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  color: var(--white);
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+/* Unconfigured = non-clickable, dimmed, "Soon" tag */
+.footer-social__pending {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.3);
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  cursor: default;
+}
+.footer-social__pending svg { opacity: 0.55; }
+.footer-social__pending em {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  font-style: normal;
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.65);
+  border-radius: var(--radius-full);
+  padding: 1px 5px;
+  line-height: 1.4;
+}
+.footer-social__status {
+  margin-top: var(--space-3);
+  font-size: 0.7rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ---------- Contact page cards ---------- */
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  margin: var(--space-8) 0;
+}
+.contact-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  text-align: left;
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: transform var(--transition-base) var(--ease-out),
+              box-shadow var(--transition-base) var(--ease-out),
+              border-color var(--transition-base);
+}
+.contact-card:hover,
+.contact-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gray-300);
+}
+.contact-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+}
+.contact-card__icon svg { width: 22px; height: 22px; }
+.contact-card[data-method="whatsapp"] .contact-card__icon { background: #25D366; }
+.contact-card[data-method="call"] .contact-card__icon { background: linear-gradient(135deg, var(--blue), var(--blue-dark)); }
+.contact-card[data-method="email"] .contact-card__icon { background: linear-gradient(135deg, var(--purple), #6D28D9); }
+.contact-card h3 { font-size: var(--font-size-base); font-weight: 600; color: var(--navy); }
+.contact-card p { font-size: var(--font-size-sm); color: var(--gray-500); line-height: 1.6; }
+.contact-card__value {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--blue-dark);
+  word-break: break-word;
+}
+.contact-card__cta {
+  margin-top: auto;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--purple);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .contact-cards { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .contact-fab { right: var(--space-4); bottom: calc(var(--space-4) + 8px); }
+  .contact-fab.has-demo-banner { bottom: calc(52px + var(--space-4)); }
+  .contact-fab__toggle { width: 52px; height: 52px; }
+  .contact-fab__panel { width: min(280px, calc(100vw - 32px)); }
+}
+@media (max-width: 430px) {
+  .contact-fab { right: var(--space-3); }
+  .contact-fab__panel { width: calc(100vw - 24px); max-width: 300px; }
+  .footer-social__list { gap: var(--space-2); }
+}
+
+/* Reduced motion: no transform/scale, keep instant state change */
+@media (prefers-reduced-motion: reduce) {
+  .contact-fab__toggle,
+  .contact-fab__panel,
+  .contact-fab__item,
+  .contact-card,
+  .footer-social__link {
+    transition: none !important;
+  }
+  .contact-fab__toggle:hover,
+  .contact-card:hover,
+  .footer-social__link:hover { transform: none !important; }
+  .contact-fab__panel { transform: none !important; }
+  .contact-fab.is-open .contact-fab__panel { transform: none !important; }
+}
