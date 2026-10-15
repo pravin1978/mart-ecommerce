@@ -1,6 +1,64 @@
 // ============================================
 // DIGIMART PRODUCT DATA
+// Uses locally generated SVG placeholders (no external dependencies)
 // ============================================
+
+// Import image generator (inline for browser compatibility)
+const CATEGORY_COLORS = {
+  software: { bg: '#eef2ff', primary: '#4f46e5', secondary: '#818cf8', icon: 'code' },
+  courses: { bg: '#ecfdf5', primary: '#059669', secondary: '#34d399', icon: 'academic' },
+  ebooks: { bg: '#fff7ed', primary: '#d97706', secondary: '#fbbf24', icon: 'book' },
+  templates: { bg: '#f0f9ff', primary: '#0284c7', secondary: '#38bdf8', icon: 'template' },
+  graphics: { bg: '#fdf2f8', primary: '#db2777', secondary: '#f472b6', icon: 'photo' },
+  audio: { bg: '#f5f3ff', primary: '#6d28d9', secondary: '#a78bfa', icon: 'music' },
+  ai: { bg: '#faf5ff', primary: '#7c3aed', secondary: '#a78bfa', icon: 'sparkles' }
+};
+
+function generatePlaceholder(category, name, width = 600, height = 400) {
+  const colors = CATEGORY_COLORS[category] || CATEGORY_COLORS.software;
+  
+  const icons = {
+    code: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+    academic: '<path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/>',
+    book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+    template: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>',
+    photo: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>',
+    music: '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+    sparkles: '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>'
+  };
+
+  const iconPath = icons[colors.icon] || icons.code;
+  const words = name.split(' ');
+  const line1 = words.slice(0, Math.ceil(words.length / 2)).join(' ');
+  const line2 = words.slice(Math.ceil(words.length / 2)).join(' ');
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:${colors.primary};stop-opacity:0.1"/>
+      <stop offset="100%" style="stop-color:${colors.secondary};stop-opacity:0.05"/>
+    </linearGradient>
+  </defs>
+  <rect width="${width}" height="${height}" fill="url(#grad)"/>
+  <rect width="${width}" height="${height}" fill="none" stroke="${colors.primary}" stroke-opacity="0.1" stroke-width="2" rx="12"/>
+  <g transform="translate(${width/2 - 40}, ${height/2 - 50})" stroke="${colors.primary}" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
+    ${iconPath}
+  </g>
+  <text x="${width/2}" y="${height/2 + 30}" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="${colors.primary}" text-anchor="middle" opacity="0.8">${line1}</text>
+  ${line2 ? `<text x="${width/2}" y="${height/2 + 50}" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="${colors.primary}" text-anchor="middle" opacity="0.6">${line2}</text>` : ''}
+  <text x="${width/2}" y="${height - 20}" font-family="Inter, sans-serif" font-size="10" fill="${colors.primary}" text-anchor="middle" opacity="0.4">DIGIMART</text>
+</svg>`;
+
+  return 'data:image/svg+xml,' + encodeURIComponent(svg);
+}
+
+function generateGallery(category, name) {
+  return [
+    generatePlaceholder(category, name, 800, 600),
+    generatePlaceholder(category, name + ' — Screenshot 2', 800, 600),
+    generatePlaceholder(category, name + ' — Screenshot 3', 800, 600)
+  ];
+}
 
 const PRODUCTS = [
   {
@@ -14,12 +72,8 @@ const PRODUCTS = [
     rating: 4.8,
     reviews: 523,
     badge: "bestseller",
-    image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("software", "ProEditor Video Editing"),
+    gallery: generateGallery("software", "ProEditor Video Editing"),
     shortDescription: "Professional video editing suite with 4K support, effects, and color grading",
     description: "ProEditor is a comprehensive video editing solution designed for content creators, filmmakers, and marketing professionals. Edit stunning 4K videos with professional-grade tools, transitions, and color correction.",
     features: [
@@ -56,12 +110,8 @@ const PRODUCTS = [
     rating: 4.9,
     reviews: 2341,
     badge: "bestseller",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("courses", "Full-Stack Web Development"),
+    gallery: generateGallery("courses", "Full-Stack Web Development"),
     shortDescription: "Complete bootcamp: HTML, CSS, JS, React, Node.js, MongoDB — 60+ hours",
     description: "Transform your career with the most comprehensive full-stack web development course. Learn from industry experts and build real-world projects that showcase your skills to employers.",
     features: [
@@ -99,11 +149,8 @@ const PRODUCTS = [
     rating: 4.5,
     reviews: 189,
     badge: null,
-    image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("ebooks", "Art of Productivity"),
+    gallery: generateGallery("ebooks", "Art of Productivity"),
     shortDescription: "Learn proven productivity systems to 2x your output",
     description: "Discover the exact productivity systems used by top performers to accomplish more in less time. This comprehensive guide covers time management, focus techniques, habit building, and workflow optimization.",
     features: [
@@ -137,12 +184,8 @@ const PRODUCTS = [
     rating: 4.7,
     reviews: 342,
     badge: "sale",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("templates", "UI Dashboard Templates"),
+    gallery: generateGallery("templates", "UI Dashboard Templates"),
     shortDescription: "50+ premium dashboard templates for web apps and admin panels",
     description: "Build stunning admin panels and dashboards in minutes with our premium template collection. Each template is fully responsive, customizable, and built with modern frameworks.",
     features: [
@@ -180,11 +223,8 @@ const PRODUCTS = [
     rating: 4.6,
     reviews: 278,
     badge: null,
-    image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("graphics", "Premium Icon Pack"),
+    gallery: generateGallery("graphics", "Premium Icon Pack"),
     shortDescription: "Beautifully crafted vector icons for web and mobile apps",
     description: "A comprehensive collection of 2000+ hand-crafted vector icons designed for modern web and mobile applications. Available in multiple formats and styles to match any design system.",
     features: [
@@ -220,11 +260,8 @@ const PRODUCTS = [
     rating: 4.4,
     reviews: 156,
     badge: null,
-    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("audio", "Lo-Fi Beats Collection"),
+    gallery: generateGallery("audio", "Lo-Fi Beats Collection"),
     shortDescription: "30 royalty-free lo-fi tracks for content creators",
     description: "A curated collection of 30 high-quality lo-fi tracks perfect for YouTube videos, podcasts, streams, and creative projects. All tracks are royalty-free for commercial use.",
     features: [
@@ -258,11 +295,8 @@ const PRODUCTS = [
     rating: 4.7,
     reviews: 891,
     badge: "sale",
-    image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("software", "PhotoMaster Pro Editor"),
+    gallery: generateGallery("software", "PhotoMaster Pro Editor"),
     shortDescription: "AI-powered photo editor with presets, filters, and retouching",
     description: "PhotoMaster Pro uses cutting-edge AI to transform your photos with professional-quality edits in seconds. Perfect for photographers, social media managers, and content creators.",
     features: [
@@ -299,11 +333,8 @@ const PRODUCTS = [
     rating: 4.8,
     reviews: 1567,
     badge: "bestseller",
-    image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("courses", "Python Data Science"),
+    gallery: generateGallery("courses", "Python Data Science"),
     shortDescription: "NumPy, Pandas, Matplotlib, Machine Learning — complete guide",
     description: "Master Python for data science from scratch. This comprehensive course covers everything from Python basics to advanced machine learning, with hands-on projects and real datasets.",
     features: [
@@ -341,11 +372,8 @@ const PRODUCTS = [
     rating: 4.6,
     reviews: 234,
     badge: null,
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("ebooks", "Freelance Business Blueprint"),
+    gallery: generateGallery("ebooks", "Freelance Business Blueprint"),
     shortDescription: "Step-by-step guide to building a successful freelance career",
     description: "Learn how to build a thriving freelance business from scratch. Covers pricing, client acquisition, contracts, taxes, and scaling strategies used by six-figure freelancers.",
     features: [
@@ -380,11 +408,8 @@ const PRODUCTS = [
     rating: 4.5,
     reviews: 412,
     badge: "sale",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("templates", "Landing Page Templates"),
+    gallery: generateGallery("templates", "Landing Page Templates"),
     shortDescription: "30 high-converting landing page templates (HTML + React)",
     description: "Launch beautiful, high-converting landing pages in minutes. Each template is built with conversion best practices, fully responsive, and easy to customize for any brand or campaign.",
     features: [
@@ -421,11 +446,8 @@ const PRODUCTS = [
     rating: 4.7,
     reviews: 189,
     badge: null,
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("graphics", "Stock Photo Bundle"),
+    gallery: generateGallery("graphics", "Stock Photo Bundle"),
     shortDescription: "High-res stock photos for commercial use — lifestyle, nature, business",
     description: "A curated collection of 500 high-resolution stock photos covering lifestyle, nature, business, technology, and abstract themes. All photos are commercially licensed and ready for professional use.",
     features: [
@@ -460,11 +482,8 @@ const PRODUCTS = [
     rating: 4.3,
     reviews: 98,
     badge: null,
-    image: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("audio", "Ambient Music Pack"),
+    gallery: generateGallery("audio", "Ambient Music Pack"),
     shortDescription: "25 ambient tracks perfect for YouTube, podcasts, and videos",
     description: "A versatile collection of 25 ambient music tracks designed for video content, podcasts, meditation apps, and background use. Each track is professionally mixed and mastered.",
     features: [
@@ -498,11 +517,8 @@ const PRODUCTS = [
     rating: 4.5,
     reviews: 567,
     badge: "sale",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("software", "VPN Shield Pro"),
+    gallery: generateGallery("software", "VPN Shield Pro"),
     shortDescription: "Secure, fast, no-logs VPN with 500+ servers worldwide",
     description: "Protect your online privacy with military-grade encryption, lightning-fast speeds, and access to 500+ servers in 60+ countries. No logs, no tracking, complete digital freedom.",
     features: [
@@ -539,11 +555,8 @@ const PRODUCTS = [
     rating: 4.9,
     reviews: 3456,
     badge: "bestseller",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("courses", "React Native Development"),
+    gallery: generateGallery("courses", "React Native Development"),
     shortDescription: "Build iOS & Android apps with React Native — 40+ hours content",
     description: "Master React Native and build production-ready mobile apps for both iOS and Android from a single codebase. Includes hooks, navigation, state management, and app store deployment.",
     features: [
@@ -581,11 +594,8 @@ const PRODUCTS = [
     rating: 4.4,
     reviews: 312,
     badge: null,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("ebooks", "Digital Marketing Mastery"),
+    gallery: generateGallery("ebooks", "Digital Marketing Mastery"),
     shortDescription: "Complete guide to SEO, social media, email marketing, and ads",
     description: "A comprehensive digital marketing guide covering SEO, social media marketing, email automation, paid advertising, and analytics. Learn strategies that actually work in 2025.",
     features: [
@@ -620,11 +630,8 @@ const PRODUCTS = [
     rating: 4.6,
     reviews: 203,
     badge: "new",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("templates", "Social Media Kit"),
+    gallery: generateGallery("templates", "Social Media Kit"),
     shortDescription: "Instagram, Facebook, Twitter templates for businesses",
     description: "A complete social media template kit with 100 professionally designed templates for Instagram, Facebook, Twitter, and LinkedIn. Fully customizable in Canva and Photoshop.",
     features: [
@@ -662,11 +669,8 @@ const PRODUCTS = [
     rating: 4.8,
     reviews: 145,
     badge: null,
-    image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("graphics", "Watercolor Textures"),
+    gallery: generateGallery("graphics", "Watercolor Textures"),
     shortDescription: "100 hand-painted watercolor textures for designers",
     description: "A beautiful collection of 100 hand-painted watercolor textures perfect for wedding invitations, branding, packaging, and digital art. High resolution with transparent backgrounds.",
     features: [
@@ -699,11 +703,8 @@ const PRODUCTS = [
     rating: 4.5,
     reviews: 167,
     badge: null,
-    image: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&h=600&fit=crop"
-    ],
+    image: generatePlaceholder("audio", "Cinematic SFX Pack"),
+    gallery: generateGallery("audio", "Cinematic SFX Pack"),
     shortDescription: "200+ cinematic sound effects for film and video production",
     description: "A professional-grade collection of 200+ cinematic sound effects for film, video, and game production. Includes impacts, whooshes, risers, atmospheres, and foley sounds.",
     features: [
@@ -740,5 +741,5 @@ const CATEGORIES = [
 
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { PRODUCTS, CATEGORIES };
+  module.exports = { PRODUCTS, CATEGORIES, generatePlaceholder, generateGallery };
 }

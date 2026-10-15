@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report an Issue — Digimart</title>
+  <meta name="description" content="Report an issue with a Digimart product or service.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">D</span>
+        <span class="logo-text">Digimart</span>
+      </a>
+      <div class="header-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" placeholder="Search products...">
+      </div>
+      <div class="header-actions">
+        <button class="cart-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count" style="display: none;">0</span></button>
+        <div class="user-avatar">U</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="section-inner">
+      <h1>Report an Issue</h1>
+      <p>Having a problem with a product? Let us know and we'll help resolve it.</p>
+    </div>
+  </div>
+
+  <main style="flex: 1; padding: var(--space-12) 0;">
+    <div class="section-inner" style="max-width: 600px;">
+      <form id="reportForm" style="background: var(--gray-50); padding: var(--space-8); border-radius: var(--radius-lg);">
+        <div style="margin-bottom: var(--space-4);">
+          <label for="reportType" style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: var(--font-size-sm);">Issue Type</label>
+          <select id="reportType" required style="width: 100%; padding: 0.8rem 1rem; border: 2px solid var(--gray-200); border-radius: var(--radius-md); font-size: var(--font-size-sm); background: white;">
+            <option value="">Select issue type</option>
+            <option value="download">Download not working</option>
+            <option value="quality">Product quality issue</option>
+            <option value="license">License problem</option>
+            <option value="payment">Payment issue</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div style="margin-bottom: var(--space-4);">
+          <label for="orderId" style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: var(--font-size-sm);">Order ID (if applicable)</label>
+          <input type="text" id="orderId" placeholder="e.g., ORD-12345" style="width: 100%; padding: 0.8rem 1rem; border: 2px solid var(--gray-200); border-radius: var(--radius-md); font-size: var(--font-size-sm);">
+        </div>
+        <div style="margin-bottom: var(--space-4);">
+          <label for="reportMessage" style="display: block; margin-bottom: 0.4rem; font-weight: 500; font-size: var(--font-size-sm);">Describe the Issue</label>
+          <textarea id="reportMessage" required placeholder="Please describe the issue in detail..." style="width: 100%; padding: 0.8rem 1rem; border: 2px solid var(--gray-200); border-radius: var(--radius-md); font-size: var(--font-size-sm); min-height: 120px; resize: vertical;"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Report</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Digimart. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('reportForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for reporting this issue. Our team will review it within 24 hours.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
