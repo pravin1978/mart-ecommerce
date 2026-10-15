@@ -2,18 +2,21 @@
 // DIGIMART TESTIMONIALS — CENTRAL DATA SOURCE
 // ============================================
 // All entries are DEMO PLACEHOLDERS.
+// - Names are generic sample labels, not real people.
+// - Feedback is editable placeholder copy, not real reviews.
+// - rating is 0 (no stars claimed) until real reviews exist.
 // To add real testimonials:
 // 1. Set isPlaceholder: false
-// 2. Fill in name, role, review, avatar
+// 2. Fill in verified name, role, review (with permission)
 // 3. Set isVerified: true only after verification process
 // ============================================
 
 const TESTIMONIALS = [
   {
     id: 1,
-    name: "Customer Name",
-    role: "Digital Creator",
-    review: "Your genuine customer feedback will appear here. Replace this sample with an authentic review after receiving permission.",
+    name: "Sample User A",
+    role: "Sample Role — Digital Creator",
+    review: "Placeholder feedback. Replace with an authentic customer review (with permission) before launch.",
     avatar: null,
     rating: 0,
     isPlaceholder: true,
@@ -21,9 +24,9 @@ const TESTIMONIALS = [
   },
   {
     id: 2,
-    name: "Customer Name",
-    role: "Small Business Owner",
-    review: "Your genuine customer feedback will appear here. Replace this sample with an authentic review after receiving permission.",
+    name: "Sample User B",
+    role: "Sample Role — Small Business Owner",
+    review: "Placeholder feedback. Replace with an authentic customer review (with permission) before launch.",
     avatar: null,
     rating: 0,
     isPlaceholder: true,
@@ -31,9 +34,9 @@ const TESTIMONIALS = [
   },
   {
     id: 3,
-    name: "Customer Name",
-    role: "Freelancer",
-    review: "Your genuine customer feedback will appear here. Replace this sample with an authentic review after receiving permission.",
+    name: "Sample User C",
+    role: "Sample Role — Freelancer",
+    review: "Placeholder feedback. Replace with an authentic customer review (with permission) before launch.",
     avatar: null,
     rating: 0,
     isPlaceholder: true,
@@ -41,9 +44,9 @@ const TESTIMONIALS = [
   },
   {
     id: 4,
-    name: "Customer Name",
-    role: "Educator",
-    review: "Your genuine customer feedback will appear here. Replace this sample with an authentic review after receiving permission.",
+    name: "Sample User D",
+    role: "Sample Role — Educator",
+    review: "Placeholder feedback. Replace with an authentic customer review (with permission) before launch.",
     avatar: null,
     rating: 0,
     isPlaceholder: true,
@@ -51,9 +54,9 @@ const TESTIMONIALS = [
   },
   {
     id: 5,
-    name: "Customer Name",
-    role: "Content Creator",
-    review: "Your genuine customer feedback will appear here. Replace this sample with an authentic review after receiving permission.",
+    name: "Sample User E",
+    role: "Sample Role — Content Creator",
+    review: "Placeholder feedback. Replace with an authentic customer review (with permission) before launch.",
     avatar: null,
     rating: 0,
     isPlaceholder: true,
@@ -61,9 +64,9 @@ const TESTIMONIALS = [
   },
   {
     id: 6,
-    name: "Customer Name",
-    role: "Marketing Professional",
-    review: "Your genuine customer feedback will appear here. Replace this sample with an authentic review after receiving permission.",
+    name: "Sample User F",
+    role: "Sample Role — Marketing Professional",
+    review: "Placeholder feedback. Replace with an authentic customer review (with permission) before launch.",
     avatar: null,
     rating: 0,
     isPlaceholder: true,
@@ -73,7 +76,7 @@ const TESTIMONIALS = [
 
 // Helper: Get initials from name
 function getInitials(name) {
-  if (!name || name === "Customer Name") return "?";
+  if (!name) return "?";
   return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
 }
 
