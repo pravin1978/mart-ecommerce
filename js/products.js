@@ -1,339 +1,487 @@
 // ============================================
-// DIGIMART — DEMO SAMPLE PRODUCTS
-// All products are clearly labeled SAMPLES for demo purposes.
-// No real purchases are available. Prices are illustrative only.
+// DIGIMART — DEMO SAMPLE PRODUCTS (12)
+// All products are DEMO SAMPLES for presentation only.
+// No real purchases are available. Prices are illustrative.
+// Names are fictional. No real ratings, reviews or sales data.
 // ============================================
 
 const CATEGORY_COLORS = {
-  software: { bg: '#eef2ff', primary: '#4f46e5', secondary: '#818cf8', icon: 'code' },
-  courses: { bg: '#ecfdf5', primary: '#059669', secondary: '#34d399', icon: 'academic' },
-  ebooks: { bg: '#fff7ed', primary: '#d97706', secondary: '#fbbf24', icon: 'book' },
-  templates: { bg: '#f0f9ff', primary: '#0284c7', secondary: '#38bdf8', icon: 'template' },
-  graphics: { bg: '#fdf2f8', primary: '#db2777', secondary: '#f472b6', icon: 'photo' },
-  audio: { bg: '#f5f3ff', primary: '#6d28d9', secondary: '#a78bfa', icon: 'music' },
-  ai: { bg: '#faf5ff', primary: '#7c3aed', secondary: '#a78bfa', icon: 'sparkles' }
+  ai: { primary: '#2563EB', secondary: '#7C3AED' },
+  saas: { primary: '#0B1220', secondary: '#2563EB' },
+  web: { primary: '#3B82F6', secondary: '#7C3AED' },
+  ebooks: { primary: '#7C3AED', secondary: '#2563EB' },
+  courses: { primary: '#2563EB', secondary: '#3B82F6' },
+  social: { primary: '#7C3AED', secondary: '#A78BFA' },
+  design: { primary: '#2563EB', secondary: '#7C3AED' },
+  productivity: { primary: '#3B82F6', secondary: '#7C3AED' }
 };
 
-function generatePlaceholder(category, name, width = 600, height = 400) {
-  const colors = CATEGORY_COLORS[category] || CATEGORY_COLORS.software;
-  
-  const icons = {
-    code: '<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
-    academic: '<path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/>',
-    book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
-    template: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>',
-    photo: '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>',
-    music: '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
-    sparkles: '<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>'
-  };
-
-  const iconPath = icons[colors.icon] || icons.code;
-  const words = name.split(' ');
-  const line1 = words.slice(0, Math.ceil(words.length / 2)).join(' ');
-  const line2 = words.slice(Math.ceil(words.length / 2)).join(' ');
-
+// Runtime fallback artwork (used only if a local SVG fails to load)
+function generateFallback(category, name, width = 800, height = 600) {
+  const c = CATEGORY_COLORS[category] || CATEGORY_COLORS.ai;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:${colors.primary};stop-opacity:0.1"/>
-      <stop offset="100%" style="stop-color:${colors.secondary};stop-opacity:0.05"/>
-    </linearGradient>
-  </defs>
-  <rect width="${width}" height="${height}" fill="url(#grad)"/>
-  <rect width="${width}" height="${height}" fill="none" stroke="${colors.primary}" stroke-opacity="0.1" stroke-width="2" rx="12"/>
-  <g transform="translate(${width/2 - 40}, ${height/2 - 50})" stroke="${colors.primary}" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.6">
-    ${iconPath}
-  </g>
-  <text x="${width/2}" y="${height/2 + 30}" font-family="Inter, sans-serif" font-size="14" font-weight="600" fill="${colors.primary}" text-anchor="middle" opacity="0.8">${line1}</text>
-  ${line2 ? `<text x="${width/2}" y="${height/2 + 50}" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="${colors.primary}" text-anchor="middle" opacity="0.6">${line2}</text>` : ''}
-  <text x="${width/2}" y="${height - 20}" font-family="Inter, sans-serif" font-size="10" fill="${colors.primary}" text-anchor="middle" opacity="0.4">DIGIMART DEMO</text>
-</svg>`;
-
+    <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${c.primary}" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="${c.secondary}" stop-opacity="0.06"/>
+    </linearGradient></defs>
+    <rect width="${width}" height="${height}" fill="#F8FAFC"/>
+    <rect width="${width}" height="${height}" fill="url(#g)"/>
+    <rect x="24" y="24" width="${width - 48}" height="${height - 48}" rx="18" fill="none" stroke="${c.primary}" stroke-opacity="0.25" stroke-width="2"/>
+    <text x="${width / 2}" y="${height / 2}" font-family="Inter, sans-serif" font-size="22" font-weight="700" fill="${c.primary}" text-anchor="middle">${name}</text>
+    <text x="${width / 2}" y="${height / 2 + 30}" font-family="Inter, sans-serif" font-size="13" fill="${c.primary}" text-anchor="middle" opacity="0.7">DIGIMART DEMO SAMPLE</text>
+  </svg>`;
   return 'data:image/svg+xml,' + encodeURIComponent(svg);
 }
 
-function generateGallery(category, name) {
-  return [
-    generatePlaceholder(category, name, 800, 600),
-    generatePlaceholder(category, name + ' — Preview 2', 800, 600),
-    generatePlaceholder(category, name + ' — Preview 3', 800, 600)
-  ];
-}
-
-// ============================================
-// SAMPLE PRODUCTS — DEMO ONLY
-// These are illustrative examples, not real products.
-// ============================================
+const img = (slug, variant) => `assets/products/${slug}-${variant}.svg`;
 
 const PRODUCTS = [
   {
     id: 1,
-    name: "AI Productivity Toolkit",
-    slug: "ai-productivity-toolkit",
-    category: "ai",
-    categoryLabel: "AI Tools",
+    name: 'Nebula AI Workspace',
+    slug: 'nebula-ai-workspace',
+    keywords: 'ai assistant agent chat content writing prompts automation',
+    category: 'ai',
+    categoryLabel: 'AI Tools',
+    badge: 'sample',
+    isDemo: true,
+    status: 'Demo only — not available for purchase',
+    price: 2499,
+    originalPrice: 4999,
+    rating: 0,
+    reviews: 0,
+    format: 'Web app (sample)',
+    fileSize: '—',
+    image: img('nebula-ai-workspace', 'cover'),
+    gallery: [
+      img('nebula-ai-workspace', 'cover'),
+      img('nebula-ai-workspace', 'screen-1'),
+      img('nebula-ai-workspace', 'screen-2')
+    ],
+    imageAlt: 'Sample mockup of Nebula AI Workspace showing a chat-style agent interface',
+    shortDescription: 'Sample: an AI assistant workspace for drafting, rewriting and structuring everyday business content.',
+    description: 'Sample product for demonstration only. Nebula AI Workspace illustrates a conversational AI workspace with reusable prompts, team workspaces and export-ready outputs. Features shown are illustrative and no purchase is possible.',
+    features: [
+      'Sample: reusable prompt library',
+      'Sample: rewrite and summarise actions',
+      'Sample: team workspace view',
+      'Sample: export to PDF and Markdown'
+    ],
+    includes: ['Sample: web application access', 'Sample: prompt starter pack', 'Sample: setup guide'],
+    systemRequirements: 'Sample: modern web browser and internet connection',
+    licenseType: 'Sample licence — to be defined',
+    delivery: 'Sample delivery — instant access (demo)',
+    refundPolicy: 'Sample policy — to be defined'
+  },
+  {
+    id: 2,
+    name: 'Pulseboard AI Analytics',
+    slug: 'pulseboard-ai-analytics',
+    keywords: 'ai analytics dashboard reporting insights charts data',
+    category: 'ai',
+    categoryLabel: 'AI Tools',
+    badge: 'sample',
+    isDemo: true,
+    status: 'Demo only — not available for purchase',
+    price: 3299,
+    originalPrice: 6499,
+    rating: 0,
+    reviews: 0,
+    format: 'Web app + desktop app (sample)',
+    fileSize: '—',
+    image: img('pulseboard-ai-analytics', 'cover'),
+    gallery: [
+      img('pulseboard-ai-analytics', 'cover'),
+      img('pulseboard-ai-analytics', 'screen-1'),
+      img('pulseboard-ai-analytics', 'screen-2')
+    ],
+    imageAlt: 'Sample mockup of Pulseboard AI Analytics showing an insights dashboard with charts',
+    shortDescription: 'Sample: an AI reporting dashboard that turns raw business data into plain-language insights.',
+    description: 'Sample product for demonstration only. Pulseboard AI Analytics shows a reporting dashboard with sample KPI tiles, trend charts and an AI summary panel. All figures on screen are illustrative placeholders.',
+    features: [
+      'Sample: AI-generated weekly summary',
+      'Sample: KPI tiles and trend charts',
+      'Sample: CSV and spreadsheet import',
+      'Sample: scheduled email digest'
+    ],
+    includes: ['Sample: dashboard access', 'Sample: sample dataset', 'Sample: onboarding checklist'],
+    systemRequirements: 'Sample: modern web browser',
+    licenseType: 'Sample licence — to be defined',
+    delivery: 'Sample delivery — instant access (demo)',
+    refundPolicy: 'Sample policy — to be defined'
+  },
+  {
+    id: 3,
+    name: 'Ledgerly Invoicing Suite',
+    slug: 'ledgerly-invoicing-suite',
+    keywords: 'saas invoicing billing clients business software finance',
+    category: 'saas',
+    categoryLabel: 'SaaS & Business Software',
+    badge: 'sample',
+    isDemo: true,
+    status: 'Demo only — not available for purchase',
+    price: 1899,
+    originalPrice: 3499,
+    rating: 0,
+    reviews: 0,
+    format: 'Web app (sample)',
+    fileSize: '—',
+    image: img('ledgerly-invoicing-suite', 'cover'),
+    gallery: [
+      img('ledgerly-invoicing-suite', 'cover'),
+      img('ledgerly-invoicing-suite', 'screen-1'),
+      img('ledgerly-invoicing-suite', 'screen-2')
+    ],
+    imageAlt: 'Sample mockup of Ledgerly Invoicing Suite showing a billing dashboard with charts',
+    shortDescription: 'Sample: invoicing, client billing and payment reminders for small service businesses.',
+    description: 'Sample product for demonstration only. Ledgerly Invoicing Suite demonstrates an invoicing workflow: create, send and track invoices, plus reminders and simple revenue views. No payment processing is connected in this demo.',
+    features: [
+      'Sample: branded invoice builder',
+      'Sample: recurring invoice templates',
+      'Sample: payment reminder schedule',
+      'Sample: client list and notes'
+    ],
+    includes: ['Sample: web application access', 'Sample: invoice templates', 'Sample: setup walkthrough'],
+    systemRequirements: 'Sample: modern web browser',
+    licenseType: 'Sample licence — to be defined',
+    delivery: 'Sample delivery — instant access (demo)',
+    refundPolicy: 'Sample policy — to be defined'
+  },
+  {
+    id: 4,
+    name: 'Vertex Agency Website Kit',
+    slug: 'vertex-agency-website-kit',
+    keywords: 'website template html css agency landing responsive pages',
+    category: 'web',
+    categoryLabel: 'Website Templates',
+    badge: 'sample',
+    isDemo: true,
+    status: 'Demo only — not available for purchase',
     price: 1499,
     originalPrice: 2999,
     rating: 0,
     reviews: 0,
-    badge: "sample",
-    isDemo: true,
-    image: generatePlaceholder("ai", "AI Productivity Toolkit"),
-    gallery: generateGallery("ai", "AI Productivity Toolkit"),
-    shortDescription: "Sample: AI-powered tools for task management, content generation, and workflow automation.",
-    description: "This is a SAMPLE product for demonstration purposes. The AI Productivity Toolkit showcases how AI-powered tools can help with task management, content generation, and workflow automation. Actual features and availability will be confirmed after approval.",
+    format: 'HTML, CSS, images (sample)',
+    fileSize: '24 MB (sample)',
+    image: img('vertex-agency-website-kit', 'cover'),
+    gallery: [
+      img('vertex-agency-website-kit', 'cover'),
+      img('vertex-agency-website-kit', 'screen-1'),
+      img('vertex-agency-website-kit', 'screen-2')
+    ],
+    imageAlt: 'Sample mockup of Vertex Agency Website Kit shown inside a browser window',
+    shortDescription: 'Sample: a clean multi-section agency website template with responsive layouts.',
+    description: 'Sample product for demonstration only. Vertex Agency Website Kit shows how a structured agency site can look: hero, services, about, testimonials and contact sections, all responsive. The template is fictional sample artwork.',
     features: [
-      "Sample feature: AI task prioritization",
-      "Sample feature: Content generation templates",
-      "Sample feature: Workflow automation rules",
-      "Sample feature: Analytics dashboard"
+      'Sample: 6 ready-made page layouts',
+      'Sample: mobile, tablet and desktop views',
+      'Sample: accessible colour contrast',
+      'Sample: contact form markup'
     ],
-    includes: [
-      "Sample: Digital toolkit access",
-      "Sample: User documentation",
-      "Sample: Email support (demo)"
-    ],
-    systemRequirements: "Sample requirements: Modern web browser, internet connection",
-    licenseType: "Sample license — to be defined",
-    delivery: "Sample delivery — instant access (demo)",
-    refundPolicy: "Sample policy — to be defined"
+    includes: ['Sample: HTML and CSS files', 'Sample: placeholder imagery', 'Sample: setup notes'],
+    systemRequirements: 'Sample: any modern static host',
+    licenseType: 'Sample licence — to be defined',
+    delivery: 'Sample delivery — instant download (demo)',
+    refundPolicy: 'Sample policy — to be defined'
   },
   {
-    id: 2,
-    name: "Digital Marketing eBook",
-    slug: "digital-marketing-ebook",
-    category: "ebooks",
-    categoryLabel: "eBooks",
-    price: 799,
-    originalPrice: 1499,
+    id: 5,
+    name: 'Bloom Storefront Theme',
+    slug: 'bloom-storefront-theme',
+    keywords: 'website template storefront ecommerce shop theme catalogue',
+    category: 'web',
+    categoryLabel: 'Website Templates',
+    badge: 'sample',
+    isDemo: true,
+    status: 'Demo only — not available for purchase',
+    price: 1299,
+    originalPrice: 2499,
     rating: 0,
     reviews: 0,
-    badge: "sample",
-    isDemo: true,
-    image: generatePlaceholder("ebooks", "Digital Marketing eBook"),
-    gallery: generateGallery("ebooks", "Digital Marketing eBook"),
-    shortDescription: "Sample: Comprehensive guide to SEO, social media, email marketing, and paid advertising.",
-    description: "This is a SAMPLE product for demonstration purposes. The Digital Marketing eBook showcases a comprehensive guide format covering SEO, social media, email marketing, and paid advertising strategies. Actual content and depth will be confirmed after approval.",
+    format: 'Theme files (sample)',
+    fileSize: '18 MB (sample)',
+    image: img('bloom-storefront-theme', 'cover'),
+    gallery: [
+      img('bloom-storefront-theme', 'cover'),
+      img('bloom-storefront-theme', 'screen-1'),
+      img('bloom-storefront-theme', 'screen-2')
+    ],
+    imageAlt: 'Sample mockup of Bloom Storefront Theme showing an online store layout',
+    shortDescription: 'Sample: a storefront theme focused on product grids, filters and simple product pages.',
+    description: 'Sample product for demonstration only. Bloom Storefront Theme demonstrates a catalogue-first layout with filtering, product pages and a checkout handoff layout. No checkout is connected in this demo.',
     features: [
-      "Sample: 200+ page guide format",
-      "Sample: SEO & keyword research chapters",
-      "Sample: Social media strategy sections",
-      "Sample: Email marketing templates"
+      'Sample: product grid and filter layout',
+      'Sample: product detail page layout',
+      'Sample: cart drawer design',
+      'Sample: responsive category menus'
     ],
-    includes: [
-      "Sample: PDF, EPUB, MOBI formats",
-      "Sample: Bonus worksheets",
-      "Sample: Lifetime updates (demo)"
-    ],
-    systemRequirements: "Sample: Any device with eBook reader support",
-    licenseType: "Sample license — personal use (demo)",
-    delivery: "Sample delivery — instant download (demo)",
-    refundPolicy: "Sample policy — to be defined"
+    includes: ['Sample: theme files', 'Sample: sample product data', 'Sample: configuration notes'],
+    systemRequirements: 'Sample: modern browser',
+    licenseType: 'Sample licence — to be defined',
+    delivery: 'Sample delivery — instant download (demo)',
+    refundPolicy: 'Sample policy — to be defined'
   },
   {
-    id: 3,
-    name: "Social Media Template Pack",
-    slug: "social-media-templates",
-    category: "templates",
-    categoryLabel: "Templates",
+    id: 6,
+    name: 'The Growth Playbook 2026',
+    slug: 'growth-playbook-2026',
+    keywords: 'ebook guide growth marketing strategy pdf planning',
+    category: 'ebooks',
+    categoryLabel: 'E-books & Guides',
+    badge: 'sample',
+    isDemo: true,
+    status: 'Demo only — not available for purchase',
     price: 599,
     originalPrice: 1199,
     rating: 0,
     reviews: 0,
-    badge: "sample",
-    isDemo: true,
-    image: generatePlaceholder("templates", "Social Media Templates"),
-    gallery: generateGallery("templates", "Social Media Templates"),
-    shortDescription: "Sample: 100+ customizable templates for Instagram, Facebook, and LinkedIn.",
-    description: "This is a SAMPLE product for demonstration purposes. The Social Media Template Pack showcases a collection of customizable templates for major social media platforms. Actual designs and formats will be confirmed after approval.",
+    format: 'PDF + EPUB (sample)',
+    fileSize: '9 MB (sample)',
+    image: img('growth-playbook-2026', 'cover'),
+    gallery: [
+      img('growth-playbook-2026', 'cover'),
+      img('growth-playbook-2026', 'screen-1'),
+      img('growth-playbook-2026', 'screen-2')
+    ],
+    imageAlt: 'Sample mockup of an eBook cover titled The Growth Playbook 2026',
+    shortDescription: 'Sample: a practical guide covering acquisition, retention and simple growth loops.',
+    description: 'Sample product for demonstration only. The Growth Playbook 2026 shows how a structured guide is presented inside Digimart: chapters on acquisition, retention, pricing and a monthly planning framework. Contents are illustrative.',
     features: [
-      "Sample: 100+ template designs",
-      "Sample: Instagram, Facebook, LinkedIn formats",
-      "Sample: Canva & Photoshop compatible",
-      "Sample: Story & post formats"
+      'Sample: 14 chapters with checklists',
+      'Sample: templates and worksheets',
+      'Sample: worked examples',
+      'Sample: PDF and EPUB formats'
     ],
-    includes: [
-      "Sample: Canva template links",
-      "Sample: PSD source files",
-      "Sample: Usage guide (demo)"
-    ],
-    systemRequirements: "Sample: Canva (free) or Adobe Photoshop",
-    licenseType: "Sample license — commercial use (demo)",
-    delivery: "Sample delivery — instant download (demo)",
-    refundPolicy: "Sample policy — to be defined"
-  },
-  {
-    id: 4,
-    name: "Online Learning Bundle",
-    slug: "online-learning-bundle",
-    category: "courses",
-    categoryLabel: "Courses",
-    price: 2999,
-    originalPrice: 5999,
-    rating: 0,
-    reviews: 0,
-    badge: "sample",
-    isDemo: true,
-    image: generatePlaceholder("courses", "Online Learning Bundle"),
-    gallery: generateGallery("courses", "Online Learning Bundle"),
-    shortDescription: "Sample: Multi-course bundle covering web development, design, and data science.",
-    description: "This is a SAMPLE product for demonstration purposes. The Online Learning Bundle showcases a multi-course package format. Actual courses, instructors, and content depth will be confirmed after approval.",
-    features: [
-      "Sample: 40+ hours of video content",
-      "Sample: Multiple course modules",
-      "Sample: Project-based learning",
-      "Sample: Certificate of completion (demo)"
-    ],
-    includes: [
-      "Sample: Video course access",
-      "Sample: Project files",
-      "Sample: Community access (demo)"
-    ],
-    systemRequirements: "Sample: Modern browser, stable internet",
-    licenseType: "Sample license — personal learning (demo)",
-    delivery: "Sample delivery — instant access (demo)",
-    refundPolicy: "Sample policy — to be defined"
-  },
-  {
-    id: 5,
-    name: "Website UI Kit",
-    slug: "website-ui-kit",
-    category: "templates",
-    categoryLabel: "Templates",
-    price: 899,
-    originalPrice: 1799,
-    rating: 0,
-    reviews: 0,
-    badge: "sample",
-    isDemo: true,
-    image: generatePlaceholder("templates", "Website UI Kit"),
-    gallery: generateGallery("templates", "Website UI Kit"),
-    shortDescription: "Sample: 50+ premium UI components and page templates for modern websites.",
-    description: "This is a SAMPLE product for demonstration purposes. The Website UI Kit showcases a collection of modern UI components and page templates. Actual components and frameworks will be confirmed after approval.",
-    features: [
-      "Sample: 50+ UI components",
-      "Sample: Figma source files",
-      "Sample: Responsive design system",
-      "Sample: Dark & light mode variants"
-    ],
-    includes: [
-      "Sample: Figma file access",
-      "Sample: Component documentation",
-      "Sample: Commercial license (demo)"
-    ],
-    systemRequirements: "Sample: Figma (free tier)",
-    licenseType: "Sample license — commercial use (demo)",
-    delivery: "Sample delivery — instant download (demo)",
-    refundPolicy: "Sample policy — to be defined"
-  },
-  {
-    id: 6,
-    name: "Creator Graphics Bundle",
-    slug: "creator-graphics-bundle",
-    category: "graphics",
-    categoryLabel: "Graphics",
-    price: 699,
-    originalPrice: 1399,
-    rating: 0,
-    reviews: 0,
-    badge: "sample",
-    isDemo: true,
-    image: generatePlaceholder("graphics", "Creator Graphics Bundle"),
-    gallery: generateGallery("graphics", "Creator Graphics Bundle"),
-    shortDescription: "Sample: 500+ stock photos, icons, and illustrations for content creators.",
-    description: "This is a SAMPLE product for demonstration purposes. The Creator Graphics Bundle showcases a collection of visual assets for content creators. Actual assets and licensing will be confirmed after approval.",
-    features: [
-      "Sample: 500+ graphic assets",
-      "Sample: Stock photos & illustrations",
-      "Sample: Icon collection",
-      "Sample: Commercial use license (demo)"
-    ],
-    includes: [
-      "Sample: High-res image files",
-      "Sample: Icon font files",
-      "Sample: Usage guide (demo)"
-    ],
-    systemRequirements: "Sample: Any design software",
-    licenseType: "Sample license — commercial use (demo)",
-    delivery: "Sample delivery — instant download (demo)",
-    refundPolicy: "Sample policy — to be defined"
+    includes: ['Sample: PDF and EPUB files', 'Sample: printable worksheets'],
+    systemRequirements: 'Sample: any PDF or EPUB reader',
+    licenseType: 'Sample licence — personal use (demo)',
+    delivery: 'Sample delivery — instant download (demo)',
+    refundPolicy: 'Sample policy — to be defined'
   },
   {
     id: 7,
-    name: "Business Automation Toolkit",
-    slug: "business-automation-toolkit",
-    category: "software",
-    categoryLabel: "Software",
-    price: 1999,
-    originalPrice: 3999,
-    rating: 0,
-    reviews: 0,
-    badge: "sample",
+    name: 'SEO Blueprint for Founders',
+    slug: 'seo-blueprint-founders',
+    keywords: 'ebook guide seo search ranking pdf founders traffic',
+    category: 'ebooks',
+    categoryLabel: 'E-books & Guides',
+    badge: 'sample',
     isDemo: true,
-    image: generatePlaceholder("software", "Business Automation Toolkit"),
-    gallery: generateGallery("software", "Business Automation Toolkit"),
-    shortDescription: "Sample: Automation templates and tools for streamlining business workflows.",
-    description: "This is a SAMPLE product for demonstration purposes. The Business Automation Toolkit showcases automation templates for common business workflows. Actual tools and integrations will be confirmed after approval.",
-    features: [
-      "Sample: Workflow automation templates",
-      "Sample: Email sequence builders",
-      "Sample: Task management integrations",
-      "Sample: Analytics & reporting (demo)"
-    ],
-    includes: [
-      "Sample: Template library access",
-      "Sample: Setup documentation",
-      "Sample: Email support (demo)"
-    ],
-    systemRequirements: "Sample: Modern web browser",
-    licenseType: "Sample license — commercial use (demo)",
-    delivery: "Sample delivery — instant access (demo)",
-    refundPolicy: "Sample policy — to be defined"
-  },
-  {
-    id: 8,
-    name: "Video Editing Presets",
-    slug: "video-editing-presets",
-    category: "audio",
-    categoryLabel: "Audio & Video",
+    status: 'Demo only — not available for purchase',
     price: 499,
     originalPrice: 999,
     rating: 0,
     reviews: 0,
-    badge: "sample",
-    isDemo: true,
-    image: generatePlaceholder("audio", "Video Editing Presets"),
-    gallery: generateGallery("audio", "Video Editing Presets"),
-    shortDescription: "Sample: 200+ color grading presets, transitions, and effects for video editors.",
-    description: "This is a SAMPLE product for demonstration purposes. The Video Editing Presets pack showcases a collection of color grading presets and effects. Actual presets and compatibility will be confirmed after approval.",
+    format: 'PDF (sample)',
+    fileSize: '6 MB (sample)',
+    image: img('seo-blueprint-founders', 'cover'),
+    gallery: [
+      img('seo-blueprint-founders', 'cover'),
+      img('seo-blueprint-founders', 'screen-1'),
+      img('seo-blueprint-founders', 'screen-2')
+    ],
+    imageAlt: 'Sample mockup of an eBook cover titled SEO Blueprint for Founders',
+    shortDescription: 'Sample: a focused SEO guide covering technical basics, content and measurement.',
+    description: 'Sample product for demonstration only. SEO Blueprint for Founders illustrates a concise guide format with section-by-section progress tracking. No ranking or traffic results are claimed.',
     features: [
-      "Sample: 200+ color presets",
-      "Sample: Transition effects",
-      "Sample: LUT files included",
-      "Sample: Multiple editor compatibility (demo)"
+      'Sample: technical SEO basics',
+      'Sample: keyword research workflow',
+      'Sample: content brief template',
+      'Sample: measurement checklist'
     ],
-    includes: [
-      "Sample: Preset files",
-      "Sample: Installation guide",
-      "Sample: Commercial license (demo)"
+    includes: ['Sample: PDF file', 'Sample: content brief template'],
+    systemRequirements: 'Sample: any PDF reader',
+    licenseType: 'Sample licence — personal use (demo)',
+    delivery: 'Sample delivery — instant download (demo)',
+    refundPolicy: 'Sample policy — to be defined'
+  },
+  {
+    id: 8,
+    name: 'Product Design Masterclass',
+    slug: 'product-design-masterclass',
+    keywords: 'course video design ui ux classes training lessons',
+    category: 'courses',
+    categoryLabel: 'Online Courses',
+    badge: 'sample',
+    isDemo: true,
+    status: 'Demo only — not available for purchase',
+    price: 3999,
+    originalPrice: 7999,
+    rating: 0,
+    reviews: 0,
+    format: 'Video lessons + files (sample)',
+    fileSize: '2.4 GB (sample)',
+    image: img('product-design-masterclass', 'cover'),
+    gallery: [
+      img('product-design-masterclass', 'cover'),
+      img('product-design-masterclass', 'screen-1'),
+      img('product-design-masterclass', 'screen-2')
     ],
-    systemRequirements: "Sample: Premiere Pro, DaVinci Resolve, or Final Cut Pro",
-    licenseType: "Sample license — commercial use (demo)",
-    delivery: "Sample delivery — instant download (demo)",
-    refundPolicy: "Sample policy — to be defined"
+    imageAlt: 'Sample mockup of a course card for Product Design Masterclass with a lesson list',
+    shortDescription: 'Sample: a structured video course covering research, flows, UI and handoff.',
+    description: 'Sample product for demonstration only. Product Design Masterclass shows how a course listing appears: module list, lesson progress and downloadable resources. Duration and curriculum shown are illustrative.',
+    features: [
+      'Sample: 6 modules with short lessons',
+      'Sample: project files for practice',
+      'Sample: design critique walkthroughs',
+      'Sample: completion checklist'
+    ],
+    includes: ['Sample: video lessons', 'Sample: project files', 'Sample: transcript notes'],
+    systemRequirements: 'Sample: streaming-capable device',
+    licenseType: 'Sample licence — personal use (demo)',
+    delivery: 'Sample delivery — instant access (demo)',
+    refundPolicy: 'Sample policy — to be defined'
+  },
+  {
+    id: 9,
+    name: 'Freelance Finance Essentials',
+    slug: 'freelance-finance-essentials',
+    keywords: 'course video finance freelancing invoicing taxes lessons',
+    category: 'courses',
+    categoryLabel: 'Online Courses',
+    badge: 'sample',
+    isDemo: true,
+    status: 'Demo only — not available for purchase',
+    price: 2499,
+    originalPrice: 4999,
+    rating: 0,
+    reviews: 0,
+    format: 'Video lessons + templates (sample)',
+    fileSize: '1.6 GB (sample)',
+    image: img('freelance-finance-essentials', 'cover'),
+    gallery: [
+      img('freelance-finance-essentials', 'cover'),
+      img('freelance-finance-essentials', 'screen-1'),
+      img('freelance-finance-essentials', 'screen-2')
+    ],
+    imageAlt: 'Sample mockup of a course card for Freelance Finance Essentials with a lesson list',
+    shortDescription: 'Sample: pricing, contracts, taxes and cash flow explained for independent workers.',
+    description: 'Sample product for demonstration only. Freelance Finance Essentials presents a short course on quoting work, invoicing, expenses and savings. Content is illustrative and is not financial advice.',
+    features: [
+      'Sample: pricing and quoting methods',
+      'Sample: contract clause checklist',
+      'Sample: expense tracking template',
+      'Sample: monthly review routine'
+    ],
+    includes: ['Sample: video lessons', 'Sample: finance templates'],
+    systemRequirements: 'Sample: streaming-capable device',
+    licenseType: 'Sample licence — personal use (demo)',
+    delivery: 'Sample delivery — instant access (demo)',
+    refundPolicy: 'Sample policy — to be defined'
+  },
+  {
+    id: 10,
+    name: 'InstaGrid Social Media Kit',
+    slug: 'instagrid-social-media-kit',
+    keywords: 'social media templates instagram posts grid kit',
+    category: 'social',
+    categoryLabel: 'Social Media Templates',
+    badge: 'sample',
+    isDemo: true,
+    status: 'Demo only — not available for purchase',
+    price: 899,
+    originalPrice: 1799,
+    rating: 0,
+    reviews: 0,
+    format: 'Editable templates (sample)',
+    fileSize: '48 MB (sample)',
+    image: img('instagrid-social-media-kit', 'cover'),
+    gallery: [
+      img('instagrid-social-media-kit', 'cover'),
+      img('instagrid-social-media-kit', 'screen-1'),
+      img('instagrid-social-media-kit', 'screen-2')
+    ],
+    imageAlt: 'Sample mockup of InstaGrid Social Media Kit showing a grid of social post templates',
+    shortDescription: 'Sample: a set of editable social post templates in a consistent grid layout.',
+    description: 'Sample product for demonstration only. InstaGrid Social Media Kit shows a coordinated set of post templates so a profile grid stays visually consistent. Template styling is fictional sample artwork.',
+    features: [
+      'Sample: 90 editable post layouts',
+      'Sample: 3 colour systems',
+      'Sample: story and highlight sizes',
+      'Sample: quick-start guide'
+    ],
+    includes: ['Sample: editable template files', 'Sample: usage guide'],
+    systemRequirements: 'Sample: any modern design app',
+    licenseType: 'Sample licence — personal and client work (demo)',
+    delivery: 'Sample delivery — instant download (demo)',
+    refundPolicy: 'Sample policy — to be defined'
+  },
+  {
+    id: 11,
+    name: 'Nova Brand Asset Library',
+    slug: 'nova-brand-asset-library',
+    keywords: 'design resources brand logo icons vector assets kit',
+    category: 'design',
+    categoryLabel: 'Design Resources',
+    badge: 'sample',
+    isDemo: true,
+    status: 'Demo only — not available for purchase',
+    price: 1799,
+    originalPrice: 3499,
+    rating: 0,
+    reviews: 0,
+    format: 'SVG, PDF, Figma-ready (sample)',
+    fileSize: '310 MB (sample)',
+    image: img('nova-brand-asset-library', 'cover'),
+    gallery: [
+      img('nova-brand-asset-library', 'cover'),
+      img('nova-brand-asset-library', 'screen-1'),
+      img('nova-brand-asset-library', 'screen-2')
+    ],
+    imageAlt: 'Sample mockup of Nova Brand Asset Library showing colour swatches and layout compositions',
+    shortDescription: 'Sample: logos, colour systems, icon sets and layout blocks for small brands.',
+    description: 'Sample product for demonstration only. Nova Brand Asset Library demonstrates a structured design kit: colour swatches, logo lock-ups, icon sets and layout blocks that scale across screens.',
+    features: [
+      'Sample: logo lock-up variations',
+      'Sample: colour system with contrast guidance',
+      'Sample: 300+ vector icons',
+      'Sample: layout blocks for web and print'
+    ],
+    includes: ['Sample: vector asset files', 'Sample: brand guidelines sheet'],
+    systemRequirements: 'Sample: any vector-capable app',
+    licenseType: 'Sample licence — personal and client work (demo)',
+    delivery: 'Sample delivery — instant download (demo)',
+    refundPolicy: 'Sample policy — to be defined'
+  },
+  {
+    id: 12,
+    name: 'Flowdesk Workflow OS',
+    slug: 'flowdesk-workflow-os',
+    keywords: 'productivity workflow kanban tasks board organiser',
+    category: 'productivity',
+    categoryLabel: 'Productivity Tools',
+    badge: 'sample',
+    isDemo: true,
+    status: 'Demo only — not available for purchase',
+    price: 1499,
+    originalPrice: 2999,
+    rating: 0,
+    reviews: 0,
+    format: 'Web app (sample)',
+    fileSize: '—',
+    image: img('flowdesk-workflow-os', 'cover'),
+    gallery: [
+      img('flowdesk-workflow-os', 'cover'),
+      img('flowdesk-workflow-os', 'screen-1'),
+      img('flowdesk-workflow-os', 'screen-2')
+    ],
+    imageAlt: 'Sample mockup of Flowdesk Workflow OS showing a three-column workflow board',
+    shortDescription: 'Sample: a simple workflow board with columns, task cards and reusable checklists.',
+    description: 'Sample product for demonstration only. Flowdesk Workflow OS shows a lightweight workflow board: columns, task cards, checklists and saved views. Board contents shown are sample data.',
+    features: [
+      'Sample: columns, cards and checklists',
+      'Sample: saved views and filters',
+      'Sample: recurring task templates',
+      'Sample: keyboard-first shortcuts'
+    ],
+    includes: ['Sample: web application access', 'Sample: starter board template'],
+    systemRequirements: 'Sample: modern web browser',
+    licenseType: 'Sample licence — to be defined',
+    delivery: 'Sample delivery — instant access (demo)',
+    refundPolicy: 'Sample policy — to be defined'
   }
 ];
 
-const CATEGORIES = [
-  { id: 'ai', label: 'AI Tools', icon: 'sparkles', count: PRODUCTS.filter(p => p.category === 'ai').length },
-  { id: 'ebooks', label: 'eBooks', icon: 'book-open', count: PRODUCTS.filter(p => p.category === 'ebooks').length },
-  { id: 'templates', label: 'Templates', icon: 'template', count: PRODUCTS.filter(p => p.category === 'templates').length },
-  { id: 'courses', label: 'Courses', icon: 'academic-cap', count: PRODUCTS.filter(p => p.category === 'courses').length },
-  { id: 'graphics', label: 'Graphics', icon: 'photo', count: PRODUCTS.filter(p => p.category === 'graphics').length },
-  { id: 'software', label: 'Software', icon: 'code', count: PRODUCTS.filter(p => p.category === 'software').length },
-  { id: 'audio', label: 'Audio & Video', icon: 'music', count: PRODUCTS.filter(p => p.category === 'audio').length }
-];
-
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { PRODUCTS, CATEGORIES, generatePlaceholder, generateGallery };
+  module.exports = { PRODUCTS, generateFallback };
 }

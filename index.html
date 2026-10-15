@@ -5,46 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Digimart — Digital Tools. Smarter Business.</title>
   <meta name="description" content="Digimart is a digital products marketplace. This is a demo preview with sample products and prices. No real purchases are available.">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=5">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
   <!-- Announcement Bar -->
   <div class="announcement-bar">
-    <p>🎉 Launch Offer: Up to 70% off on all digital products. Use code <strong>DIGI70</strong> at checkout. <a href="#products">Shop Now →</a></p>
+    <p>Demo preview — browse 12 sample products, categories, cart and account screens. <a href="#products">Explore the collection →</a></p>
   </div>
 
   <!-- Header -->
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo" aria-label="Digimart home">
-        <img src="assets/logo-primary.svg" alt="Digimart — Digital Tools. Smarter Business." height="40" width="auto" class="header-logo">
+        <img src="assets/logo-primary.svg?v=5" alt="Digimart — Digital Tools. Smarter Business." height="40" width="auto" class="header-logo">
       </a>
       <div class="header-search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         <input type="text" id="searchInput" placeholder="Search products, courses, ebooks..." aria-label="Search products">
       </div>
       <div class="header-actions">
+        <nav class="header-auth" aria-label="Account">
+          <a href="signin.html" class="header-auth-link">Sign In</a>
+          <a href="signup.html" class="header-auth-link header-auth-link--primary">Sign Up</a>
+        </nav>
         <button class="cart-btn" id="cartBtn" aria-label="Open cart">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
           <span class="cart-count" style="display: none;">0</span>
         </button>
-        <div class="user-avatar">U</div>
+        <a href="signin.html" class="user-avatar" aria-label="Sign in to your Digimart account">U</a>
       </div>
     </div>
-    <nav class="category-nav">
+    <nav class="category-nav" aria-label="Product categories">
       <div class="category-nav-inner">
         <a href="#products" class="category-link active" data-category="all">All Products</a>
         <a href="#products" class="category-link" data-category="ai">AI Tools</a>
-        <a href="#products" class="category-link" data-category="ebooks">eBooks</a>
-        <a href="#products" class="category-link" data-category="templates">Templates</a>
-        <a href="#products" class="category-link" data-category="courses">Courses</a>
-        <a href="#products" class="category-link" data-category="graphics">Graphics</a>
-        <a href="#products" class="category-link" data-category="software">Software</a>
-        <a href="#products" class="category-link" data-category="audio">Audio & Video</a>
+        <a href="#products" class="category-link" data-category="saas">SaaS &amp; Business Software</a>
+        <a href="#products" class="category-link" data-category="web">Website Templates</a>
+        <a href="#products" class="category-link" data-category="ebooks">E-books &amp; Guides</a>
+        <a href="#products" class="category-link" data-category="courses">Online Courses</a>
+        <a href="#products" class="category-link" data-category="social">Social Media</a>
+        <a href="#products" class="category-link" data-category="design">Design Resources</a>
+        <a href="#products" class="category-link" data-category="productivity">Productivity</a>
       </div>
     </nav>
   </header>
@@ -54,7 +59,7 @@
     <div class="hero-inner">
       <div class="hero-badge">Demo Preview</div>
       <h1>Everything Digital.<br><span class="gradient-text">One Marketplace.</span></h1>
-      <p class="hero-description">Discover premium software, expert-led courses, beautifully crafted templates, and creative assets — all with instant delivery and secure payments.</p>
+      <p class="hero-description">Discover premium software, expert-led courses, beautifully crafted templates, and creative assets — presented in a polished digital marketplace preview.</p>
 
       <div class="hero-ctas">
         <a href="#products" class="btn btn-primary">
@@ -76,55 +81,62 @@
         <p class="section-subtitle">Find exactly what you need from our curated collection of premium digital products</p>
       </div>
       <div class="categories-grid">
-        <div class="category-card cat-ai">
+        <a href="#products" class="category-card cat-ai" data-category-link="ai">
           <div class="category-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
           <h3>AI Tools</h3>
+          <p>2 samples</p>
+        </a>
+        <a href="#products" class="category-card cat-saas" data-category-link="saas">
+          <div class="category-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <h3>SaaS &amp; Business Software</h3>
           <p>1 sample</p>
-        </div>
-        <div class="category-card cat-ebooks">
+        </a>
+        <a href="#products" class="category-card cat-web" data-category-link="web">
+          <div class="category-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20a15 15 0 010-20"/></svg>
+          </div>
+          <h3>Website Templates</h3>
+          <p>2 samples</p>
+        </a>
+        <a href="#products" class="category-card cat-ebooks" data-category-link="ebooks">
           <div class="category-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           </div>
-          <h3>eBooks</h3>
-          <p>1 sample</p>
-        </div>
-        <div class="category-card cat-templates">
-          <div class="category-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-          </div>
-          <h3>Templates</h3>
+          <h3>E-books &amp; Guides</h3>
           <p>2 samples</p>
-        </div>
-        <div class="category-card cat-courses">
+        </a>
+        <a href="#products" class="category-card cat-courses" data-category-link="courses">
           <div class="category-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.66 2.69 3 6 3s6-1.34 6-3v-5"/></svg>
           </div>
-          <h3>Courses</h3>
-          <p>1 sample</p>
-        </div>
-        <div class="category-card cat-graphics">
+          <h3>Online Courses</h3>
+          <p>2 samples</p>
+        </a>
+        <a href="#products" class="category-card cat-social" data-category-link="social">
           <div class="category-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="0.8"/></svg>
           </div>
-          <h3>Graphics</h3>
+          <h3>Social Media Templates</h3>
           <p>1 sample</p>
-        </div>
-        <div class="category-card cat-software">
+        </a>
+        <a href="#products" class="category-card cat-design" data-category-link="design">
           <div class="category-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="14.5" r="2.5"/><circle cx="8.5" cy="15.5" r="2.5"/><path d="M12 3a9 9 0 100 18h1.5a2.5 2.5 0 000-5H12a2 2 0 010-5"/></svg>
           </div>
-          <h3>Software</h3>
+          <h3>Design Resources</h3>
           <p>1 sample</p>
-        </div>
-        <div class="category-card cat-audio">
+        </a>
+        <a href="#products" class="category-card cat-productivity" data-category-link="productivity">
           <div class="category-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16M7 9h.01M7 13h.01M13 9h.01M13 13h.01M7 17h.01M13 17h.01"/></svg>
           </div>
-          <h3>Audio & Video</h3>
+          <h3>Productivity Tools</h3>
           <p>1 sample</p>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -136,16 +148,16 @@
         <div>
           <span class="section-label">Sample Collection</span>
           <h2 class="section-title">Featured <span style="background: var(--brand-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Digital Products</span></h2>
-          <p class="section-subtitle">Sample products shown for demonstration purposes</p>
+          <p class="section-subtitle">12 sample products for demonstration. Prices and availability are illustrative.</p>
         </div>
         <div class="products-filter">
-          <select class="sort-select" id="sortSelect" aria-label="Sort products">
+          <select class="sort-select" id="sortSelect" aria-label="Sort sample products">
             <option value="default">Sort by: Featured</option>
             <option value="price-low">Price: Low to High</option>
             <option value="price-high">Price: High to Low</option>
-            <option value="rating">Highest Rated</option>
-            <option value="popular">Most Popular</option>
-            <option value="newest">Newest First</option>
+            <option value="name">Name: A to Z</option>
+            <option value="category">Category: A to Z</option>
+            <option value="newest">Recently Added</option>
           </select>
         </div>
       </div>
@@ -191,15 +203,15 @@
           <div class="benefit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <h3>Secure Payments</h3>
-          <p>Pay securely with Razorpay, UPI, credit cards, or PayPal. Your data is always encrypted.</p>
+          <h3>Checkout Flow (Demo)</h3>
+          <p>The checkout screen is a demo preview. No payment gateway is connected and no orders are placed.</p>
         </div>
         <div class="benefit-card benefit-support">
           <div class="benefit-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
           </div>
-          <h3>24/7 Support</h3>
-          <p>Our dedicated support team is available around the clock to help with any questions.</p>
+          <h3>Sample Support Copy</h3>
+          <p>Support routes shown on this demo are illustrative. Contact details are placeholders for the presentation.</p>
         </div>
       </div>
     </div>
@@ -221,13 +233,13 @@
         </div>
         <div class="step-card">
           <div class="step-number">2</div>
-          <h3>Purchase</h3>
-          <p>Pay securely with Razorpay, UPI, or your preferred payment method</p>
+          <h3>Request</h3>
+          <p>Review the sample listing, add it to the demo cart, and walk through the demo checkout screen</p>
         </div>
         <div class="step-card">
           <div class="step-number">3</div>
           <h3>Access</h3>
-          <p>Get instant download access and lifetime updates for your purchase</p>
+          <p>Production delivery, licensing and update terms will be published when real products launch</p>
         </div>
       </div>
     </div>
@@ -261,11 +273,11 @@
       <div class="faq-grid">
         <div class="faq-item">
           <button class="faq-question">
-            How do I receive my digital products after purchase?
+            How do I receive products?
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-answer">
-            <p>After successful payment, you will receive an instant download link on your order confirmation page and via email. You can also access your purchases anytime from your account dashboard.</p>
+            <p>This site is a demo preview. Delivery of files, order confirmations and account dashboards will be added once real products and a backend are live.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -274,7 +286,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-answer">
-            <p>We accept payments via Razorpay (credit/debit cards, net banking, wallets), UPI, and all major international payment methods including PayPal. All transactions are secured with industry-standard encryption.</p>
+            <p>None yet. No payment gateway is connected to this demo and no orders are placed. Payment options will be published when Digimart launches for real purchases.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -283,7 +295,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-answer">
-            <p>We offer a 7-30 day money-back guarantee depending on the product category. eBooks and audio packs: 7 days. Software and templates: 14 days. Courses: 30 days. All refunds are processed within 5-7 business days.</p>
+            <p>Not applicable in the demo. Refund windows will be defined per category and published with the live launch, along with the full policy page.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -292,7 +304,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="faq-answer">
-            <p>Yes! All products come with lifetime free updates. Once you purchase a product, you'll receive all future updates at no additional cost. You'll be notified via email when new versions are available.</p>
+            <p>Sample listings mention sample update terms only. The actual update policy for each product will be shown on its live product page.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -337,15 +349,9 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" aria-label="Digimart home">
-            <img src="assets/logo-white.svg" alt="Digimart" height="36" width="auto" style="margin-bottom: 1rem;">
+            <img src="assets/logo-white.svg?v=5" alt="Digimart" height="36" width="auto" style="margin-bottom: 1rem;">
           </a>
-          <p>India's premium marketplace for digital products. Quality software, courses, eBooks, templates and creative assets from trusted creators.</p>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
-            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-            <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-          </div>
+          <p>A digital marketplace preview for software, courses, eBooks, templates and creative assets. Sample content only — real products and services are coming soon.</p>
         </div>
         <div class="footer-column">
           <h4>Quick Links</h4>
@@ -359,14 +365,22 @@
           </ul>
         </div>
         <div class="footer-column">
+          <h4>Account</h4>
+          <ul>
+            <li><a href="signin.html">Sign In (demo)</a></li>
+            <li><a href="signup.html">Sign Up (demo)</a></li>
+            <li><a href="index.html#testimonials">Customer Reviews</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
           <h4>Categories</h4>
           <ul>
             <li><a href="index.html#products">AI Tools</a></li>
-            <li><a href="index.html#products">eBooks</a></li>
-            <li><a href="index.html#products">Templates</a></li>
-            <li><a href="index.html#products">Courses</a></li>
-            <li><a href="index.html#products">Graphics</a></li>
-            <li><a href="index.html#products">Software</a></li>
+            <li><a href="index.html#products">SaaS &amp; Business Software</a></li>
+            <li><a href="index.html#products">Website Templates</a></li>
+            <li><a href="index.html#products">E-books &amp; Guides</a></li>
+            <li><a href="index.html#products">Online Courses</a></li>
+            <li><a href="index.html#products">Design Resources</a></li>
           </ul>
         </div>
         <div class="footer-column">
@@ -374,10 +388,9 @@
           <ul>
             <li><a href="contact.html">Contact Us</a></li>
             <li><a href="faq.html">FAQ</a></li>
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">System Status</a></li>
+            <li><a href="faq.html">Help Center</a></li>
             <li><a href="report.html">Report an Issue</a></li>
-          </ul>
+                    </ul>
         </div>
         <div class="footer-column">
           <h4>Contact Info</h4>
@@ -400,8 +413,7 @@
       <div class="footer-bottom">
         <p>&copy; 2026 Digimart. Digital Tools. Smarter Business. All rights reserved. Demo preview — no real purchases available.</p>
         <div class="footer-payments">
-          <span class="footer-payment-badge" style="opacity: 0.5;">Razorpay (Demo)</span>
-          <span class="footer-payment-badge" style="opacity: 0.5;">UPI (Demo)</span>
+          <span class="footer-payment-badge" style="opacity: 0.5;">Payments not connected (demo)</span>
         </div>
       </div>
     </div>
@@ -431,10 +443,10 @@
   </script>
 
   <!-- App Scripts -->
-  <script src="js/products.js"></script>
-  <script src="js/testimonials.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/products.js?v=5"></script>
+  <script src="js/testimonials.js?v=5"></script>
+  <script src="js/cart.js?v=5"></script>
+  <script src="js/app.js?v=5"></script>
 
   <script>
     // Render testimonials
@@ -450,7 +462,7 @@
         return `
           <div class="testimonial-card">
             <div class="testimonial-header">
-              <div class="testimonial-avatar" style="background: ${avatarColor};">${initials}</div>
+              <div class="testimonial-avatar" style="background:${avatarColor};width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:0.875rem;flex-shrink:0;">${initials}</div>
               <div class="testimonial-info">
                 <h4>${t.name}</h4>
                 <p>${t.role}</p>
@@ -459,7 +471,7 @@
             <div class="testimonial-stars" title="Sample rating placeholder">${stars}</div>
             <p class="testimonial-text">"${t.review}"</p>
             <span class="testimonial-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+              <svg style="width:12px;height:12px;flex-shrink:0;" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
               Demo Placeholder — Not a Real Review
             </span>
           </div>

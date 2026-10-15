@@ -8,26 +8,30 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=5">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
   <!-- Header -->
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo" aria-label="Digimart home">
-        <img src="assets/logo-compact.svg" alt="Digimart" height="36" width="auto">
+        <img src="assets/logo-compact.svg?v=5" alt="Digimart" height="36" width="auto">
       </a>
       <div class="header-search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         <input type="text" placeholder="Search products..." aria-label="Search products">
       </div>
       <div class="header-actions">
-        <button class="cart-btn" aria-label="Open cart">
+        <nav class="header-auth" aria-label="Account">
+          <a href="signin.html" class="header-auth-link">Sign In</a>
+          <a href="signup.html" class="header-auth-link header-auth-link--primary">Sign Up</a>
+        </nav>
+        <button class="cart-btn" id="cartBtn" aria-label="Open cart">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
           <span class="cart-count" style="display: none;">0</span>
         </button>
-        <div class="user-avatar">U</div>
+        <a href="signin.html" class="user-avatar" aria-label="Sign in to your Digimart account">U</a>
       </div>
     </div>
   </header>
@@ -64,14 +68,9 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="index.html" class="logo" aria-label="Digimart home">
-            <img src="assets/logo-white.svg" alt="Digimart" height="36" width="auto">
+            <img src="assets/logo-white.svg?v=5" alt="Digimart" height="36" width="auto">
           </a>
           <p>India's premium marketplace for digital products.</p>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
-            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-          </div>
         </div>
         <div class="footer-column">
           <h4>Quick Links</h4>
@@ -98,7 +97,9 @@
           <ul>
             <li><a href="contact.html">Contact Us</a></li>
             <li><a href="faq.html">FAQ</a></li>
-            <li><a href="#">Help Center</a></li>
+            <li><a href="faq.html">Help Center</a></li>
+            <li><a href="signin.html">Sign In (demo)</a></li>
+            <li><a href="signup.html">Sign Up (demo)</a></li>
           </ul>
         </div>
         <div class="footer-column">
@@ -117,9 +118,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/products.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/products.js?v=5"></script>
+  <script src="js/cart.js?v=5"></script>
+  <script src="js/app.js?v=5"></script>
   <script>
     // Get product ID from URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -142,13 +143,13 @@
       document.getElementById('productDetail').innerHTML = `
         <div class="product-gallery">
           <div class="product-gallery-main">
-            <img src="${product.image}" alt="${product.name}">
+            <img src="${product.image}" alt="${product.imageAlt || product.name + ' sample product mockup'}" onerror="this.onerror=null;this.src=generateFallback('${product.category}', '${product.name.replace(/'/g, "\\'")}');">
           </div>
           ${product.gallery ? `
             <div class="product-gallery-thumbs">
               ${product.gallery.map((img, i) => `
-                <div class="product-gallery-thumb ${i === 0 ? 'active' : ''}" data-img="${img}">
-                  <img src="${img}" alt="${product.name} preview ${i + 1}">
+                <div class="product-gallery-thumb ${i === 0 ? 'active' : ''}" data-img="${img}" data-alt="${product.imageAlt || product.name + ' sample preview ' + (i + 1)}">
+                  <img src="${img}" alt="${product.name} sample preview ${i + 1}" loading="lazy">
                 </div>
               `).join('')}
             </div>
@@ -166,8 +167,14 @@
           <p class="product-detail-description">${product.description}</p>
 
           <div style="background: #fef3c7; border: 1px solid #fbbf24; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
-            <p style="font-size: 0.8rem; color: #92400e; font-weight: 600; margin-bottom: 0.25rem;">⚠️ DEMO PRODUCT</p>
-            <p style="font-size: 0.75rem; color: #92400e;">This is a sample product for demonstration purposes. Features, pricing, and availability are illustrative only.</p>
+            <p style="font-size: 0.8rem; color: #92400e; font-weight: 600; margin-bottom: 0.25rem;">DEMO PRODUCT — NOT AVAILABLE FOR PURCHASE</p>
+            <p style="font-size: 0.75rem; color: #92400e;">${product.status || 'Demo only'}. Features, pricing and availability shown here are illustrative placeholders for this presentation.</p>
+          </div>
+
+          <div class="product-meta-row">
+            <span><strong>Format:</strong> ${product.format || '—'}</span>
+            <span><strong>Size:</strong> ${product.fileSize || '—'}</span>
+            <span><strong>Status:</strong> Demo listing</span>
           </div>
 
           <div class="product-detail-section">
@@ -217,6 +224,7 @@
           document.querySelectorAll('.product-gallery-thumb').forEach(t => t.classList.remove('active'));
           thumb.classList.add('active');
           document.querySelector('.product-gallery-main img').src = thumb.dataset.img;
+          if (thumb.dataset.alt) document.querySelector('.product-gallery-main img').alt = thumb.dataset.alt;
         });
       });
 
@@ -232,10 +240,10 @@
         const total = product.price;
         alert(
           `=== DEMO CHECKOUT ===\n\n` +
-          `This is a demonstration only. No real payment will be processed.\n\n` +
+          `This is a demonstration only. No payment will be processed and no order will be created.\n\n` +
           `Product: ${product.name}\n` +
-          `Price: ₹${total.toLocaleString('en-IN')} (Demo)\n\n` +
-          `In production, you would be redirected to Razorpay for secure payment.`
+          `Sample price: ₹${total.toLocaleString('en-IN')} (demo)\n\n` +
+          `No payment gateway is connected to this site.`
         );
         Cart.clear();
       });

@@ -109,10 +109,9 @@ const CartSidebar = {
           Demo Checkout
         </button>
         <div class="cart-payment-methods">
-          <p>Demo mode — no real payments processed</p>
+          <p>Demo mode — no payments are processed</p>
           <div class="cart-payment-badges">
-            <span class="cart-payment-badge" style="opacity: 0.5;">Razorpay (Demo)</span>
-            <span class="cart-payment-badge" style="opacity: 0.5;">UPI (Demo)</span>
+            <span class="cart-payment-badge" style="opacity: 0.6;">No gateway connected (demo)</span>
           </div>
         </div>
       </div>
@@ -284,13 +283,15 @@ const ProductRenderer = {
       ? `<span class="stars">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}</span>
          <span class="rating-value">${product.rating}</span>
          <span class="review-count">(${product.reviews.toLocaleString()})</span>`
-      : `<span style="color: var(--gray-400); font-size: 0.8rem;">No reviews yet</span>`;
+      : `<span style="color: var(--gray-400); font-size: 0.8rem;">No reviews yet — sample product</span>`;
+
+    const alt = product.imageAlt || `${product.name} sample product mockup`;
 
     return `
       <article class="product-card" data-id="${product.id}">
         <div class="product-image">
-          <img src="${product.image}" alt="${product.name}" loading="lazy">
-          <span class="demo-product-badge">Sample</span>
+          <img src="${product.image}" alt="${alt}" loading="lazy" onerror="this.onerror=null;this.src=generateFallback('${product.category}', '${product.name.replace(/'/g, "\\'")}');">
+          <span class="demo-product-badge">DEMO PRODUCT</span>
           ${product.badge && product.badge !== 'sample' ? `<span class="product-badge ${product.badge}">${product.badge === 'bestseller' ? 'Bestseller' : product.badge === 'new' ? 'New' : 'Sale'}</span>` : ''}
           <div class="product-actions">
             <button class="product-action-btn" onclick="window.location.href='product.html?id=${product.id}'" aria-label="View details">
@@ -380,11 +381,12 @@ const ProductRenderer = {
         debounceTimer = setTimeout(() => {
           const query = e.target.value.toLowerCase().trim();
           const filtered = query
-            ? PRODUCTS.filter(p =>
-                p.name.toLowerCase().includes(query) ||
-                p.description.toLowerCase().includes(query) ||
-                p.categoryLabel.toLowerCase().includes(query)
-              )
+            ? PRODUCTS.filter(p => {
+                const hay = [p.name, p.shortDescription, p.description, p.categoryLabel, p.format || '', p.keywords || '']
+                  .join(' ')
+                  .toLowerCase();
+                return hay.includes(query);
+              })
             : PRODUCTS;
           this.render(filtered);
         }, 300);
@@ -405,11 +407,11 @@ const ProductRenderer = {
           case 'price-high':
             sorted.sort((a, b) => b.price - a.price);
             break;
-          case 'rating':
-            sorted.sort((a, b) => b.rating - a.rating);
+          case 'name':
+            sorted.sort((a, b) => a.name.localeCompare(b.name));
             break;
-          case 'popular':
-            sorted.sort((a, b) => b.reviews - a.reviews);
+          case 'category':
+            sorted.sort((a, b) => a.categoryLabel.localeCompare(b.categoryLabel) || a.name.localeCompare(b.name));
             break;
           case 'newest':
             sorted.sort((a, b) => b.id - a.id);

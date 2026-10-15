@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Digimart</title>
+  <meta name="description" content="Sign in to Digimart. Demo interface only — no account is created and no credentials are stored.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=5">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=5">
+</head>
+<body class="auth-body">
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="Digimart home">
+        <img src="assets/logo-primary.svg?v=5" alt="Digimart — Digital Tools. Smarter Business." height="40" width="auto" class="header-logo">
+      </a>
+      <div class="header-actions">
+        <nav class="header-auth" aria-label="Account">
+          <a href="signin.html" class="header-auth-link" aria-current="page">Sign In</a>
+          <a href="signup.html" class="header-auth-link header-auth-link--primary">Sign Up</a>
+        </nav>
+        <a href="index.html" class="btn btn-outline btn-sm">Back to Store</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-main">
+    <div class="auth-card">
+      <div class="auth-card-header">
+        <img src="assets/logo-stacked.svg?v=5" alt="Digimart" height="96" width="auto" class="auth-logo">
+        <h1 class="auth-title">Welcome back</h1>
+        <p class="auth-subtitle">Sign in to your Digimart account.</p>
+      </div>
+
+      <div class="auth-demo-notice" role="note">
+        <svg style="width:16px;height:16px;flex-shrink:0;" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <p><strong>Demo interface.</strong> No authentication backend is connected. Nothing you type here is sent anywhere or stored, and no account is created.</p>
+      </div>
+
+      <form id="signinForm" class="auth-form" novalidate>
+        <div class="form-field">
+          <label for="signin-email">Email address</label>
+          <input type="email" id="signin-email" name="email" autocomplete="email" placeholder="you@company.com"
+                 aria-describedby="signin-email-error" required>
+          <p class="field-error" id="signin-email-error" role="alert" hidden></p>
+        </div>
+
+        <div class="form-field">
+          <label for="signin-password">Password</label>
+          <div class="password-wrap">
+            <input type="password" id="signin-password" name="password" autocomplete="current-password"
+                   placeholder="Enter your password" aria-describedby="signin-password-error" required>
+            <button type="button" class="password-toggle" data-target="signin-password"
+                    aria-label="Show password" aria-pressed="false">
+              <svg class="icon-eye" style="width:18px;height:18px;" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              <svg class="icon-eye-off" style="width:18px;height:18px;display:none;" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-10-8-10-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 10 8 10 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 104.24-4.24M1 1l22 22"/></svg>
+            </button>
+          </div>
+          <p class="field-error" id="signin-password-error" role="alert" hidden></p>
+        </div>
+
+        <div class="form-row">
+          <label class="checkbox">
+            <input type="checkbox" id="signin-remember" name="remember">
+            <span>Remember my email on this device</span>
+          </label>
+          <a href="#" class="link" id="forgot-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Sign In (Demo)</button>
+        <p class="auth-hint">Remember-me stores only your email address for convenience. Passwords are never stored.</p>
+      </form>
+
+      <div class="auth-alt">
+        <p>New to Digimart? <a href="signup.html" class="link">Create an account</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer auth-footer">
+    <div class="footer-container">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        <p>&copy; 2026 Digimart. Digital Tools. Smarter Business. Demo preview — no real accounts or orders.</p>
+        <div class="footer-payments">
+          <span class="footer-payment-badge" style="opacity: 0.6;">Payments not connected (demo)</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/auth.js?v=5"></script>
+</body>
+</html>

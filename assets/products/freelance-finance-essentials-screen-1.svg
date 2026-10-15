@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Freelance Finance Essentials — sample product mockup">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EEF2FF"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#0B1220" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  <circle cx="740" cy="70" r="150" fill="#3B82F6" opacity="0.07"/>
+  <circle cx="80" cy="540" r="170" fill="#7C3AED" opacity="0.07"/>
+
+  <g filter="url(#softShadow)"><rect x="76" y="88" width="648" height="404" rx="20" fill="#FFFFFF" stroke="#E2E8F0"/><rect x="76" y="88" width="316" height="404" rx="20" fill="url(#accent)"/><rect x="372" y="88" width="20" height="404" fill="url(#accent)"/><rect x="392" y="88" width="332" height="404" rx="20" fill="#FFFFFF" stroke="#E2E8F0"/><circle cx="234" cy="150" r="34" fill="#FFFFFF" opacity="0.18"/><circle cx="234" cy="150" r="24" fill="#FFFFFF" opacity="0.9"/><path d="M228 138 l16 12 -16 12 z" fill="#2563EB"/><text x="152" y="226" font-family="Inter, Segoe UI, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF" >Freelance</text><text x="152" y="258" font-family="Inter, Segoe UI, sans-serif" font-size="24" font-weight="800" fill="#E0E7FF" >Finance</text><rect x="152" y="282" width="150" height="8" rx="4" fill="#FFFFFF" opacity="0.6"/><rect x="152" y="300" width="110" height="8" rx="4" fill="#FFFFFF" opacity="0.4"/><rect x="152" y="396" width="150" height="34" rx="17" fill="#FFFFFF" opacity="0.9"/><text x="172" y="418" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="800" fill="#2563EB" >Sample course</text><rect x="416" y="120" width="284" height="48" rx="10" fill="#F1F5F9" stroke="#E2E8F0"/><circle cx="442" cy="144" r="11" fill="#2563EB" stroke="#2563EB"/><path d="M437 144 l4 4 7 -8" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round"/><text x="464" y="149" font-family="Inter, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#0B1220" >Welcome &amp; setup</text><rect x="416" y="182" width="284" height="48" rx="10" fill="#F1F5F9" stroke="#E2E8F0"/><circle cx="442" cy="206" r="11" fill="#2563EB" stroke="#2563EB"/><path d="M437 206 l4 4 7 -8" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round"/><text x="464" y="211" font-family="Inter, Segoe UI, sans-serif" font-size="13" font-weight="700" fill="#0B1220" >Core concepts</text><rect x="416" y="244" width="284" height="48" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/><circle cx="442" cy="268" r="11" fill="#FFFFFF" stroke="#E2E8F0"/><text x="464" y="273" font-family="Inter, Segoe UI, sans-serif" font-size="13" font-weight="500" fill="#64748B" >Hands-on project</text><rect x="416" y="306" width="284" height="48" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/><circle cx="442" cy="330" r="11" fill="#FFFFFF" stroke="#E2E8F0"/><text x="464" y="335" font-family="Inter, Segoe UI, sans-serif" font-size="13" font-weight="500" fill="#64748B" >Templates &amp; files</text><rect x="416" y="368" width="284" height="48" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/><circle cx="442" cy="392" r="11" fill="#FFFFFF" stroke="#E2E8F0"/><text x="464" y="397" font-family="Inter, Segoe UI, sans-serif" font-size="13" font-weight="500" fill="#64748B" >Wrap-up review</text></g>
+
+  <g>
+    <rect x="28" y="556" width="104" height="26" rx="13" fill="#0B1220" opacity="0.92"/>
+    <text x="80" y="573" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="1.2">DEMO SAMPLE</text>
+    <text x="146" y="573" font-family="Inter, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#64748B">Freelance Finance Essentials</text>
+  </g>
+  <text x="772" y="573" text-anchor="end" font-family="Inter, Segoe UI, sans-serif" font-size="11" font-weight="700" fill="#64748B" opacity="0.7" letter-spacing="1">DIGIMART DEMO SAMPLE</text>
+</svg>
