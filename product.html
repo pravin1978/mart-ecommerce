@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details — Digimart</title>
+  <meta name="description" content="View product details, features, licensing and purchase options on Digimart.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">D</span>
+        <span class="logo-text">Digimart</span>
+      </a>
+      <div class="header-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" placeholder="Search products..." aria-label="Search products">
+      </div>
+      <div class="header-actions">
+        <button class="cart-btn" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-count" style="display: none;">0</span>
+        </button>
+        <div class="user-avatar">U</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero" id="pageHero">
+    <div class="section-inner">
+      <h1 id="productName">Loading...</h1>
+      <p id="productShortDesc"></p>
+    </div>
+  </div>
+
+  <!-- Product Detail -->
+  <main style="flex: 1; padding: var(--space-12) 0;">
+    <div class="section-inner">
+      <div class="product-detail" id="productDetail">
+        <div style="text-align: center; padding: var(--space-16);">
+          <div class="loading" style="margin: 0 auto;"></div>
+          <p style="margin-top: var(--space-4); color: var(--gray-500);">Loading product details...</p>
+        </div>
+      </div>
+
+      <!-- Related Products -->
+      <section style="margin-top: var(--space-16);">
+        <h2 style="font-size: var(--font-size-2xl); font-weight: 700; margin-bottom: var(--space-6);">Related Products</h2>
+        <div class="products-grid" id="relatedProducts" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <span class="logo-icon">D</span>
+            <span class="logo-text">Digimart</span>
+          </a>
+          <p>India's premium marketplace for digital products.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="#" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="index.html#products">Software</a></li>
+            <li><a href="index.html#products">Courses</a></li>
+            <li><a href="index.html#products">eBooks</a></li>
+            <li><a href="index.html#products">Templates</a></li>
+            <li><a href="index.html#products">Graphics</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="#">Help Center</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Contact Info</h4>
+          <ul class="footer-contact">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +91-9511766236</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> support@digimart.com</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Mon-Fri: 9AM - 6PM IST</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Digimart. All rights reserved.</p>
+        <div class="footer-payments">
+          <span class="footer-payment-badge">Razorpay</span>
+          <span class="footer-payment-badge">UPI</span>
+          <span class="footer-payment-badge">VISA</span>
+          <span class="footer-payment-badge">Mastercard</span>
+          <span class="footer-payment-badge">PayPal</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    // Get product ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = parseInt(urlParams.get('id')) || 1;
+    const product = PRODUCTS.find(p => p.id === productId);
+
+    if (product) {
+      // Update page title and hero
+      document.title = `${product.name} — Digimart`;
+      document.getElementById('productName').textContent = product.name;
+      document.getElementById('productShortDesc').textContent = product.shortDescription;
+
+      // Calculate discount
+      const discount = product.originalPrice
+        ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+        : null;
+
+      // Render product detail
+      document.getElementById('productDetail').innerHTML = `
+        <div class="product-gallery">
+          <div class="product-gallery-main">
+            <img src="${product.image}" alt="${product.name}">
+          </div>
+          ${product.gallery ? `
+            <div class="product-gallery-thumbs">
+              ${product.gallery.map((img, i) => `
+                <div class="product-gallery-thumb ${i === 0 ? 'active' : ''}" data-img="${img}">
+                  <img src="${img}" alt="${product.name} screenshot ${i + 1}">
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+        </div>
+        <div class="product-detail-info">
+          <span class="product-detail-category">${product.categoryLabel}</span>
+          <h2 class="product-detail-name">${product.name}</h2>
+          <div class="product-detail-rating">
+            <span class="stars">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}</span>
+            <span>${product.rating} rating</span>
+            <span>(${product.reviews.toLocaleString()} reviews)</span>
+          </div>
+          <div class="product-detail-price">
+            <span class="current">₹${product.price.toLocaleString('en-IN')}</span>
+            ${product.originalPrice ? `<span class="original">₹${product.originalPrice.toLocaleString('en-IN')}</span>` : ''}
+            ${discount ? `<span class="discount-badge">${discount}% OFF</span>` : ''}
+          </div>
+          <p class="product-detail-description">${product.description}</p>
+
+          <div class="product-detail-section">
+            <h3>Key Features</h3>
+            <ul class="product-features">
+              ${product.features.map(f => `<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>${f}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="product-detail-section">
+            <h3>What's Included</h3>
+            <ul class="product-features">
+              ${product.includes.map(i => `<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>${i}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="product-detail-section">
+            <h3>System Requirements</h3>
+            <p style="font-size: var(--font-size-sm); color: var(--gray-600);">${product.systemRequirements}</p>
+          </div>
+
+          <div class="product-detail-section">
+            <h3>License & Delivery</h3>
+            <ul class="product-features">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>License: ${product.licenseType}</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Delivery: ${product.delivery}</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Refund: ${product.refundPolicy}</li>
+            </ul>
+          </div>
+
+          <div class="product-detail-actions">
+            <button class="btn btn-outline" id="addToCartBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              Add to Cart
+            </button>
+            <button class="btn btn-primary" id="buyNowBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Buy Now
+            </button>
+          </div>
+        </div>
+      `;
+
+      // Gallery thumbnails click handler
+      document.querySelectorAll('.product-gallery-thumb').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          document.querySelectorAll('.product-gallery-thumb').forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
+          document.querySelector('.product-gallery-main img').src = thumb.dataset.img;
+        });
+      });
+
+      // Add to cart button
+      document.getElementById('addToCartBtn').addEventListener('click', () => {
+        Cart.addItem(product);
+        alert(`${product.name} added to cart!`);
+      });
+
+      // Buy now button
+      document.getElementById('buyNowBtn').addEventListener('click', () => {
+        Cart.addItem(product);
+        alert(`Proceeding to checkout...\n\nTotal: ₹${product.price.toLocaleString('en-IN')}\n\nPayment methods: Razorpay, UPI\n\nNOTE: This is a demo. In production, you would be redirected to Razorpay for secure payment.`);
+        Cart.clear();
+      });
+
+      // Render related products
+      const related = PRODUCTS.filter(p => p.category === product.category && p.id !== product.id).slice(0, 3);
+      document.getElementById('relatedProducts').innerHTML = related.map(p => `
+        <article class="product-card" onclick="window.location.href='product.html?id=${p.id}'">
+          <div class="product-image">
+            <img src="${p.image}" alt="${p.name}" loading="lazy">
+          </div>
+          <div class="product-info">
+            <span class="product-category">${p.categoryLabel}</span>
+            <h3 class="product-name">${p.name}</h3>
+            <div class="product-rating">
+              <span class="stars">${'★'.repeat(Math.floor(p.rating))}${'☆'.repeat(5 - Math.floor(p.rating))}</span>
+              <span class="rating-value">${p.rating}</span>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span class="current">₹${p.price.toLocaleString('en-IN')}</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join('');
+
+    } else {
+      document.getElementById('productDetail').innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: var(--space-16);">
+          <h2 style="font-size: var(--font-size-2xl); margin-bottom: var(--space-4);">Product not found</h2>
+          <p style="color: var(--gray-500); margin-bottom: var(--space-6);">The product you're looking for doesn't exist or has been removed.</p>
+          <a href="index.html" class="btn btn-primary">Back to Store</a>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

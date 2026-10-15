@@ -3,241 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - Digimart</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #6c5ce7;
-      --primary-dark: #5a4bd1;
-      --secondary: #f5f7fa;
-      --text: #333;
-      --text-light: #666;
-      --border: #e0e0e0;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; color: var(--text); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
-    a { text-decoration: none; color: inherit; }
-
-    .navbar { position: fixed; top: 0; width: 100%; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 2rem; border-bottom: 1px solid var(--border); }
-    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 1.8rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
-    .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; }
-    .nav-actions { display: flex; gap: 1rem; align-items: center; }
-    .nav-profile { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--primary); }
-
-    main { flex: 1; margin-top: 80px; }
-    .page-hero { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; text-align: center; padding: 4rem 2rem; }
-    .page-hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
-    .page-hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
-
-    .content-section { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
-    .content-section h2 { font-size: 1.5rem; margin: 2rem 0 1rem; color: var(--primary); }
-    .content-section h2:first-child { margin-top: 0; }
-    .content-section h3 { font-size: 1.2rem; margin: 1.5rem 0 0.8rem; color: var(--text); }
-    .content-section p { color: var(--text-light); margin-bottom: 1rem; line-height: 1.8; }
-    .content-section ul { margin: 1rem 0 1rem 2rem; }
-    .content-section ul li { margin-bottom: 0.5rem; color: var(--text-light); }
-    .content-section ul li::before { content: "•"; color: var(--primary); font-weight: bold; margin-right: 0.5rem; }
-    .content-section a { color: var(--primary); }
-    .content-section a:hover { text-decoration: underline; }
-
-    .last-updated { background: var(--secondary); padding: 1rem 1.5rem; border-radius: 8px; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-light); }
-
-    .site-footer { background: #1a1a2e; color: #fff; padding: 3rem 2rem 1rem; margin-top: auto; }
-    .footer-container { max-width: 1200px; margin: 0 auto; }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
-    .footer-column h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary); }
-    .footer-column h4 { font-size: 1.1rem; margin-bottom: 1rem; color: var(--primary); }
-    .footer-column p { color: #aaa; font-size: 0.9rem; line-height: 1.8; }
-    .footer-column ul li { margin-bottom: 0.5rem; }
-    .footer-column ul li a { color: #aaa; font-size: 0.9rem; transition: color 0.3s; }
-    .footer-column ul li a:hover { color: var(--primary); }
-    .social-links { display: flex; gap: 0.8rem; margin-top: 1rem; }
-    .social-links a { width: 35px; height: 35px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; transition: background 0.3s; }
-    .social-links a:hover { background: var(--primary); }
-    .contact-info li { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.8rem; color: #aaa; font-size: 0.9rem; }
-    .contact-info svg { flex-shrink: 0; margin-top: 2px; }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-bottom p { color: #666; font-size: 0.85rem; }
-    .payment-methods { display: flex; gap: 0.5rem; }
-    .payment-methods span { color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; }
-  </style>
+  <title>Privacy Policy — Digimart</title>
+  <meta name="description" content="Privacy Policy for Digimart digital products marketplace.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="logo">
-        <a href="index.html">
-          <div class="logo-icon">D</div>
-          <span>Digimart</span>
-        </a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">D</span>
+        <span class="logo-text">Digimart</span>
+      </a>
+      <div class="header-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" placeholder="Search products...">
       </div>
-      <div class="nav-actions">
-        <a href="index.html" style="color:var(--primary);font-weight:500;">Back to Store</a>
-        <img src="https://ui-avatars.com/api/?name=User&background=6c5ce7&color=white&size=40" alt="User" class="nav-profile">
+      <div class="header-actions">
+        <button class="cart-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count" style="display: none;">0</span></button>
+        <div class="user-avatar">U</div>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <main>
-    <div class="page-hero">
+  <div class="page-hero">
+    <div class="section-inner">
       <h1>Privacy Policy</h1>
       <p>Your privacy matters to us. Learn how we protect your data at Digimart.</p>
     </div>
+  </div>
 
-    <div class="content-section">
-      <div class="last-updated">Last updated: October 15, 2025</div>
+  <main style="flex: 1; padding: var(--space-12) 0;">
+    <div class="section-inner" style="max-width: 800px;">
+      <div style="color: var(--gray-600); line-height: 1.8;">
+        <p style="margin-bottom: var(--space-6);"><strong>Last updated:</strong> October 15, 2025</p>
 
-      <h2>1. Introduction</h2>
-      <p>Digimart ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our digital marketplace.</p>
-      <p>By using our website, you consent to the practices described in this policy. If you do not agree with the terms, please discontinue use of our services.</p>
+        <h2 style="font-size: var(--font-size-xl); font-weight: 700; margin: var(--space-8) 0 var(--space-4);">1. Introduction</h2>
+        <p>Digimart ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our digital marketplace.</p>
 
-      <h2>2. Information We Collect</h2>
-      <h3>Personal Information</h3>
-      <p>We may collect personally identifiable information, including:</p>
-      <ul>
-        <li>Name and email address</li>
-        <li>Payment information (processed securely through encrypted third-party gateways)</li>
-        <li>Account credentials (username, password)</li>
-        <li>Purchase history and download activity</li>
-      </ul>
+        <h2 style="font-size: var(--font-size-xl); font-weight: 700; margin: var(--space-8) 0 var(--space-4);">2. Information We Collect</h2>
+        <p>We collect personally identifiable information including your name, email address, payment information (processed securely through encrypted third-party gateways), account credentials, and purchase history.</p>
 
-      <h3>Non-Personal Information</h3>
-      <p>We may also collect non-personal information:</p>
-      <ul>
-        <li>Browser type and version</li>
-        <li>Device type and operating system</li>
-        <li>Pages visited and interaction patterns</li>
-        <li>Referring website addresses</li>
-      </ul>
+        <h2 style="font-size: var(--font-size-xl); font-weight: 700; margin: var(--space-8) 0 var(--space-4);">3. How We Use Your Information</h2>
+        <p>We use the information we collect to process and deliver your digital product purchases, send download links and license keys, provide customer support, improve our marketplace, and send transactional emails and optional promotions.</p>
 
-      <h2>3. How We Use Your Information</h2>
-      <p>We use the information we collect to:</p>
-      <ul>
-        <li>Process and deliver your digital product purchases</li>
-        <li>Send download links and license keys</li>
-        <li>Provide customer support and resolve issues</li>
-        <li>Improve our marketplace and user experience</li>
-        <li>Send transactional emails and optional promotions</li>
-        <li>Detect and prevent fraud or abuse</li>
-        <li>Comply with legal obligations</li>
-      </ul>
+        <h2 style="font-size: var(--font-size-xl); font-weight: 700; margin: var(--space-8) 0 var(--space-4);">4. Data Storage and Security</h2>
+        <p>We use industry-standard security measures to protect your personal information. Your data is stored securely using Firebase, which provides enterprise-grade security including encryption at rest and in transit. All data transmissions use SSL/TLS encryption.</p>
 
-      <h2>4. Data Storage and Security</h2>
-      <p>We use industry-standard security measures to protect your personal information. Your data is stored securely using Firebase, which provides enterprise-grade security including encryption at rest and in transit.</p>
-      <ul>
-        <li>SSL/TLS encryption for all data transmission</li>
-        <li>PCI-DSS compliant payment processing</li>
-        <li>Regular security audits and updates</li>
-        <li>Strict access controls for personal data</li>
-      </ul>
+        <h2 style="font-size: var(--font-size-xl); font-weight: 700; margin: var(--space-8) 0 var(--space-4);">5. Sharing Your Information</h2>
+        <p>We do not sell, trade, or rent your personal information to third parties. We may share your information only with payment processors (to securely process transactions), email service providers (to deliver product emails), when required by law, or in the event of a business transfer.</p>
 
-      <h2>5. Digital Product Delivery</h2>
-      <p>After purchase, digital products are delivered instantly via:</p>
-      <ul>
-        <li>Direct download links on the order confirmation page</li>
-        <li>Email delivery with download instructions and license keys</li>
-        <li>Account dashboard access for re-downloads</li>
-      </ul>
-      <p>All delivery data is encrypted and stored securely.</p>
+        <h2 style="font-size: var(--font-size-xl); font-weight: 700; margin: var(--space-8) 0 var(--space-4);">6. Cookies</h2>
+        <p>We use cookies and similar tracking technologies to remember your preferences, analyze website traffic, and provide personalized product recommendations. You can disable cookies through your browser settings.</p>
 
-      <h2>6. Sharing Your Information</h2>
-      <p>We do not sell, trade, or rent your personal information to third parties. We may share your information only in the following cases:</p>
-      <ul>
-        <li><strong>Payment Processors:</strong> To securely process transactions</li>
-        <li><strong>Email Service Providers:</strong> To deliver product emails and updates</li>
-        <li><strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
-        <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of assets</li>
-      </ul>
+        <h2 style="font-size: var(--font-size-xl); font-weight: 700; margin: var(--space-8) 0 var(--space-4);">7. Your Rights</h2>
+        <p>You have the right to access your personal data, request correction of inaccurate data, request deletion of your account, opt out of marketing communications, and withdraw consent at any time. Contact us at privacy@digimart.com to exercise these rights.</p>
 
-      <h2>7. Cookies and Tracking Technologies</h2>
-      <p>We use cookies and similar tracking technologies to:</p>
-      <ul>
-        <li>Remember your preferences and cart items</li>
-        <li>Analyze website traffic and usage patterns</li>
-        <li>Provide personalized product recommendations</li>
-      </ul>
-      <p>You can disable cookies through your browser settings, but this may affect site functionality.</p>
-
-      <h2>8. Your Rights</h2>
-      <p>You have the right to:</p>
-      <ul>
-        <li>Access your personal data</li>
-        <li>Request correction of inaccurate data</li>
-        <li>Request deletion of your account and data</li>
-        <li>Opt out of marketing communications</li>
-        <li>Withdraw consent at any time</li>
-      </ul>
-      <p>To exercise these rights, contact us at <a href="contact.html">our contact page</a> or email privacy@digimart.com.</p>
-
-      <h2>9. Third-Party Links</h2>
-      <p>Our website may contain links to third-party sites. We are not responsible for their privacy practices. We encourage you to review their policies before providing any personal information.</p>
-
-      <h2>10. Children's Privacy</h2>
-      <p>Our website is not intended for children under 13 years of age. We do not knowingly collect personal information from children.</p>
-
-      <h2>11. Changes to This Policy</h2>
-      <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated revision date.</p>
-
-      <h2>12. Contact Us</h2>
-      <p>For questions about this Privacy Policy or our data practices:</p>
-      <ul>
-        <li>Email: privacy@digimart.com</li>
-        <li>Phone: +1 (555) 987-6543</li>
-        <li><a href="contact.html">Contact Form</a></li>
-      </ul>
+        <h2 style="font-size: var(--font-size-xl); font-weight: 700; margin: var(--space-8) 0 var(--space-4);">8. Contact Us</h2>
+        <p>For questions about this Privacy Policy: Email: privacy@digimart.com | Phone: +91-9511766236 | Hours: Mon-Fri 9AM-6PM IST</p>
+      </div>
     </div>
   </main>
 
   <footer class="site-footer">
     <div class="footer-container">
-      <div class="footer-grid">
-        <div class="footer-column">
-          <h3>Digimart</h3>
-          <p>Your premium destination for digital products.</p>
-          <div class="social-links">
-            <a href="#" aria-label="Facebook"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-            <a href="#" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
-            <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-          </div>
-        </div>
-        <div class="footer-column">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="#">License Terms</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h4>Categories</h4>
-          <ul>
-            <li><a href="#">Software</a></li>
-            <li><a href="#">Online Courses</a></li>
-            <li><a href="#">eBooks</a></li>
-            <li><a href="#">Templates</a></li>
-            <li><a href="#">Graphics & Media</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h4>Contact Info</h4>
-          <ul class="contact-info">
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> support@digimart.com</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +1 (555) 987-6543</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> privacy@digimart.com</li>
-          </ul>
-        </div>
-      </div>
       <div class="footer-bottom">
         <p>&copy; 2025 Digimart. All rights reserved.</p>
-        <div class="payment-methods">
-          <span style="background:#1a1f71;">VISA</span>
-          <span style="background:#eb001b;">Mastercard</span>
-          <span style="background:#003087;">PayPal</span>
-          <span style="background:#6c5ce7;">Crypto</span>
-        </div>
       </div>
     </div>
   </footer>
