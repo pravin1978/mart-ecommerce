@@ -9,15 +9,34 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=10">
+  <link rel="stylesheet" href="css/style.css?v=13">
+  <!-- Theme: apply saved/OS preference before first paint to avoid a flash of the wrong theme -->
+  <script>
+    (function () {
+      try {
+        var k = "digimart-theme";
+        var s = null;
+        try { s = window.localStorage.getItem(k); } catch (e) {}
+        var t = (s === "dark" || s === "light")
+          ? s
+          : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+  
 </head>
 <body class="auth-body">
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="logo" aria-label="Digimart home">
-        <img src="assets/logo-primary.svg?v=5" alt="Digimart — Digital Tools. Smarter Business." height="40" class="header-logo">
+        <img src="assets/logo-primary.svg?v=5" alt="Digimart — Digital Tools. Smarter Business." height="40" class="header-logo logo--light">
+        <img src="assets/logo-white.svg?v=5" alt="" aria-hidden="true" height="40" class="header-logo logo--dark">
       </a>
       <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode" aria-pressed="false"></button>
         <nav class="header-auth" aria-label="Account">
           <a href="signin.html" class="header-auth-link" aria-current="page">Sign In</a>
           <a href="signup.html" class="header-auth-link header-auth-link--primary">Sign Up</a>
@@ -94,6 +113,7 @@
   <script src="js/auth.js?v=5"></script>
 
   <script src="js/config.js?v=1"></script>
+  <script src="js/theme.js?v=1"></script>
   <script src="js/contact.js?v=2"></script>
 </body>
 </html>
